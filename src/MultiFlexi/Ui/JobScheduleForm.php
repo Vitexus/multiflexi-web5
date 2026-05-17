@@ -122,7 +122,8 @@ CSS);
 
     public function timeSelect(): void
     {
-        $this->addInput(new \Ease\Html\InputDateTimeLocalTag('when', WebPage::isPosted() ? WebPage::getRequestValue('when') : new \DateTime()), _('Launch after'));
+        $value = WebPage::isPosted() ? WebPage::getRequestValue('when') : (new \DateTime())->format('Y-m-d\TH:i');
+        $this->addInput(new \Ease\Html\InputDateTimeLocalTag('when', $value), _('Launch after'));
     }
 
     /**
