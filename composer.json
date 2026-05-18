@@ -22,7 +22,7 @@
         "vitexsoftware/ease-fluentpdo": "dev-main",
         "vitexsoftware/ease-bootstrap5-widgets": "^1.4",
         "robmorgan/phinx": "^0.14",
-        "datatables/datatables": "^1.10",
+        "datatables.net/datatables.net-bs5": "*",
         "sensiolabs/ansi-to-html": "^2.0",
         "rcubitto/json-pretty": "^1.0",
         "goat1000/svggraph": "^3.20",
@@ -78,10 +78,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php -r \"copy('vendor/datatables/datatables/media/js/dataTables.bootstrap5.js', 'src/js/dataTables.bootstrap5.js');copy('vendor/datatables/datatables/media/js/jquery.dataTables.js', 'src/js/jquery.dataTables.js');copy('vendor/datatables/datatables/media/css/dataTables.bootstrap5.css','src/css/dataTables.bootstrap5.css');\""
+            "php -r \"copy('vendor/datatables.net/datatables.net-bs5/js/dataTables.bootstrap5.js', 'src/js/dataTables.bootstrap5.js');copy('vendor/datatables.net/datatables.net/js/dataTables.js', 'src/js/jquery.dataTables.js');copy('vendor/datatables.net/datatables.net-bs5/css/dataTables.bootstrap5.css','src/css/dataTables.bootstrap5.css');\""
         ],
         "post-update-cmd": [
-            "php -r \"copy('vendor/datatables/datatables/media/js/dataTables.bootstrap5.js', 'src/js/dataTables.bootstrap5.js');copy('vendor/datatables/datatables/media/js/jquery.dataTables.js', 'src/js/jquery.dataTables.js');copy('vendor/datatables/datatables/media/css/dataTables.bootstrap5.css','src/css/dataTables.bootstrap5.css');\""
+            "php -r \"copy('vendor/datatables.net/datatables.net-bs5/js/dataTables.bootstrap5.js', 'src/js/dataTables.bootstrap5.js');copy('vendor/datatables.net/datatables.net/js/dataTables.js', 'src/js/jquery.dataTables.js');copy('vendor/datatables.net/datatables.net-bs5/css/dataTables.bootstrap5.css','src/css/dataTables.bootstrap5.css');\""
         ]
     },
     "config": {

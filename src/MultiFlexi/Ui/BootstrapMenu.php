@@ -53,7 +53,7 @@ class BootstrapMenu extends \Ease\TWB5\Navbar
                 $loginForm->addItem(new \Ease\Html\InputHiddenTag('csrf_token', $csrfToken));
             }
 
-            $loginForm->addItem('&nbsp;&nbsp;&nbsp;');
+            $loginForm->addItem(new \Ease\Html\SpanTag('&nbsp;&nbsp;&nbsp;'));
             $loginForm->addItem(new \Ease\TWB5\LinkButton('passwordrecovery.php', _('Password recovery'), 'warning my-2 my-sm-0', ['title' => _('Recover your password'), 'id' => 'passwordrecoverybuttonmuenu']));
             $this->addMenuItem($loginForm);
             $this->addItem($content);
