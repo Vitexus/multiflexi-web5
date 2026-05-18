@@ -69,7 +69,7 @@ CSS);
             $inputCaption = new \Ease\Html\StrongTag($fieldName);
 
             if ($field->getType() === 'bool') {
-                $input = new \Ease\Html\DivTag(new \Ease\TWB4\Widgets\Toggle($fieldName, $field->getValue() === 'true' ? true : false, 'true', ['data-size' => 'small']));
+                $input = new \Ease\Html\DivTag(new \Ease\TWB5\Widgets\Toggle($fieldName, $field->getValue() === 'true' ? true : false, 'true', ['data-size' => 'small']));
             } elseif ($field->isMultiLine()) {
                 $input = new \Ease\Html\TextareaTag($fieldName, $field->getValue(), ['class' => 'form-control form-control-sm', 'rows' => 4]);
             } else {
@@ -110,21 +110,21 @@ CSS);
 
             if ($field->isRequired()) {
                 $formGroup->addTagClass('required-field');
-                $flags->addItem(new \Ease\TWB4\Badge('danger', _('required')));
+                $flags->addItem(new \Ease\TWB5\Badge('danger', _('required')));
             }
 
             if ($field->isSecret()) {
                 $formGroup->addTagClass('secret-field');
-                $flags->addItem(new \Ease\TWB4\Badge('dark', '🔒 '._('secret')));
+                $flags->addItem(new \Ease\TWB5\Badge('dark', '🔒 '._('secret')));
             }
 
             if ($field->isExpiring()) {
                 $formGroup->addTagClass('expiring-field');
-                $flags->addItem(new \Ease\TWB4\Badge('warning', '⏳ '._('expiring')));
+                $flags->addItem(new \Ease\TWB5\Badge('warning', '⏳ '._('expiring')));
             }
 
             if ($field->isMultiLine()) {
-                $flags->addItem(new \Ease\TWB4\Badge('info', _('multiline')));
+                $flags->addItem(new \Ease\TWB5\Badge('info', _('multiline')));
             }
 
             if (!empty($flags->pageParts)) {
@@ -143,14 +143,14 @@ CSS);
         $this->addItem(new \Ease\Html\InputHiddenTag('app_id', $engine->getDataValue('app_id')));
         $this->addItem(new \Ease\Html\InputHiddenTag('company_id', $engine->getDataValue('company_id')));
 
-        $saveRow = new \Ease\TWB4\Row();
-        $saveColumn = $saveRow->addColumn(8, new \Ease\TWB4\SubmitButton(_('Save'), 'success btn-lg btn-block'));
-        $saveRow->addColumn(4, new \Ease\TWB4\LinkButton('actions.php?id='.$engine->getMyKey(), '🛠️&nbsp;'._('Actions'), 'secondary btn-lg btn-block'));
+        $saveRow = new \Ease\TWB5\Row();
+        $saveColumn = $saveRow->addColumn(8, new \Ease\TWB5\SubmitButton(_('Save'), 'success btn-lg btn-block'));
+        $saveRow->addColumn(4, new \Ease\TWB5\LinkButton('actions.php?id='.$engine->getMyKey(), '🛠️&nbsp;'._('Actions'), 'secondary btn-lg btn-block'));
 
         $appSetupCommand = $engine->getApplication()->getDataValue('setup');
 
         if (!empty($appSetupCommand)) {
-            $saveColumn->addItem(new \Ease\TWB4\Alert('info', 'ℹ️&nbsp;'._('After saving configuration, the following setup command will be executed:').'<br><code>'.htmlspecialchars((string) $appSetupCommand, \ENT_QUOTES | \ENT_HTML5, 'UTF-8').'</code>'));
+            $saveColumn->addItem(new \Ease\TWB5\Alert('info', 'ℹ️&nbsp;'._('After saving configuration, the following setup command will be executed:').'<br><code>'.htmlspecialchars((string) $appSetupCommand, \ENT_QUOTES | \ENT_HTML5, 'UTF-8').'</code>'));
         }
 
         $this->addItem($saveRow);

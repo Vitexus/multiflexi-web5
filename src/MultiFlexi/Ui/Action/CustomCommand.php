@@ -39,7 +39,7 @@ class CustomCommand extends \MultiFlexi\Action\CustomCommand
      */
     public function inputs(string $prefix): \Ease\Embedable
     {
-        return new \Ease\TWB4\FormGroup(_('Command'), new \Ease\Html\InputTextTag($prefix.'[CustomCommand][command]'), '', _('Bash shell is used'));
+        return new \Ease\TWB5\FormGroup(_('Command'), new \Ease\Html\InputTextTag($prefix.'[CustomCommand][command]'), '', _('Bash shell is used'));
     }
 
     /**
@@ -47,6 +47,6 @@ class CustomCommand extends \MultiFlexi\Action\CustomCommand
      */
     public function configForm(): \Ease\Embedable
     {
-        return new \Ease\TWB4\Badge('info', _('No additional configuration required'));
+        return new \Ease\TWB5\Badge('info', _('No additional configuration required'));
     }
 }

@@ -17,7 +17,7 @@ namespace MultiFlexi\Ui;
 
 use Ease\Html\InputHiddenTag;
 use Ease\Html\InputTextTag;
-use Ease\TWB4\SubmitButton;
+use Ease\TWB5\SubmitButton;
 
 /**
  * Form for editing all ConfigField properties.
@@ -68,7 +68,7 @@ class ConfFieldsForm extends SecureForm
             _('Note'),
         );
 
-        $requiredToggle = new \Ease\TWB4\Widgets\Toggle('required');
+        $requiredToggle = new \Ease\TWB5\Widgets\Toggle('required');
 
         if (!empty($conffields['required'])) {
             $requiredToggle->setTagProperties(['checked' => 'checked']);
@@ -76,7 +76,7 @@ class ConfFieldsForm extends SecureForm
 
         $this->addInput($requiredToggle, _('Required'));
 
-        $secretToggle = new \Ease\TWB4\Widgets\Toggle('secret');
+        $secretToggle = new \Ease\TWB5\Widgets\Toggle('secret');
 
         if (!empty($conffields['secret'])) {
             $secretToggle->setTagProperties(['checked' => 'checked']);
@@ -84,7 +84,7 @@ class ConfFieldsForm extends SecureForm
 
         $this->addInput($secretToggle, _('Secret'));
 
-        $multilineToggle = new \Ease\TWB4\Widgets\Toggle('multiline');
+        $multilineToggle = new \Ease\TWB5\Widgets\Toggle('multiline');
 
         if (!empty($conffields['multiline'])) {
             $multilineToggle->setTagProperties(['checked' => 'checked']);
@@ -92,7 +92,7 @@ class ConfFieldsForm extends SecureForm
 
         $this->addInput($multilineToggle, _('Multiline'));
 
-        $expiringToggle = new \Ease\TWB4\Widgets\Toggle('expiring');
+        $expiringToggle = new \Ease\TWB5\Widgets\Toggle('expiring');
 
         if (!empty($conffields['expiring'])) {
             $expiringToggle->setTagProperties(['checked' => 'checked']);

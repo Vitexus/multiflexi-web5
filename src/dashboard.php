@@ -29,23 +29,23 @@ $oPage->container->addItem(new DashboardMetricsCards());
 $oPage->container->addItem(new DashboardStatusCards());
 
 // Grafy
-$chartsRow = new \Ease\TWB4\Row();
+$chartsRow = new \Ease\TWB5\Row();
 $chartsRow->addColumn(6, new DashboardJobsByAppChart());
 $chartsRow->addColumn(6, new DashboardJobsByCompanyChart());
 $oPage->container->addItem($chartsRow);
 
 // Graf 3: Timeline exekucí za posledních 7 dní
-$timelineRow = new \Ease\TWB4\Row();
+$timelineRow = new \Ease\TWB5\Row();
 $timelineRow->addColumn(12, new DashboardTimelineChart());
 $oPage->container->addItem($timelineRow);
 
 // Graf 4: RunTemplates podle intervalů
-$intervalRow = new \Ease\TWB4\Row();
+$intervalRow = new \Ease\TWB5\Row();
 $intervalRow->addColumn(12, new DashboardIntervalChart());
 $oPage->container->addItem($intervalRow);
 
 // Tabulka s posledními joby
-$recentJobsRow = new \Ease\TWB4\Row();
+$recentJobsRow = new \Ease\TWB5\Row();
 $recentJobsRow->addColumn(12, new DashboardRecentJobsTable());
 $oPage->container->addItem($recentJobsRow);
 

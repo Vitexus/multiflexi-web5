@@ -30,21 +30,21 @@ class EventRuleForm extends SecureForm
      */
     public function __construct(\MultiFlexi\EventRule $eventRule, array $formProperties = [])
     {
-        $row1 = new \Ease\TWB4\Row();
-        $row1->addColumn(4, new \Ease\TWB4\FormGroup(_('Event Source'), new EventSourceSelect('event_source_id', (int) $eventRule->getDataValue('event_source_id'))));
-        $row1->addColumn(4, new \Ease\TWB4\FormGroup(_('Evidence Pattern'), new \Ease\Html\InputTextTag('evidence', $eventRule->getDataValue('evidence'), [], _('e.g. faktura-vydana or leave empty for any'))));
-        $row1->addColumn(4, new \Ease\TWB4\FormGroup(_('Operation'), new OperationSelect('operation', $eventRule->getDataValue('operation') ?: 'any')));
+        $row1 = new \Ease\TWB5\Row();
+        $row1->addColumn(4, new \Ease\TWB5\FormGroup(_('Event Source'), new EventSourceSelect('event_source_id', (int) $eventRule->getDataValue('event_source_id'))));
+        $row1->addColumn(4, new \Ease\TWB5\FormGroup(_('Evidence Pattern'), new \Ease\Html\InputTextTag('evidence', $eventRule->getDataValue('evidence'), [], _('e.g. faktura-vydana or leave empty for any'))));
+        $row1->addColumn(4, new \Ease\TWB5\FormGroup(_('Operation'), new OperationSelect('operation', $eventRule->getDataValue('operation') ?: 'any')));
 
-        $row2 = new \Ease\TWB4\Row();
-        $row2->addColumn(4, new \Ease\TWB4\FormGroup(_('RunTemplate ID'), new \Ease\Html\InputNumberTag('runtemplate_id', (string) $eventRule->getDataValue('runtemplate_id'))));
-        $row2->addColumn(4, new \Ease\TWB4\FormGroup(_('Priority'), new \Ease\Html\InputNumberTag('priority', (string) ($eventRule->getDataValue('priority') ?: '0'))));
-        $row2->addColumn(4, new \Ease\TWB4\FormGroup(
+        $row2 = new \Ease\TWB5\Row();
+        $row2->addColumn(4, new \Ease\TWB5\FormGroup(_('RunTemplate ID'), new \Ease\Html\InputNumberTag('runtemplate_id', (string) $eventRule->getDataValue('runtemplate_id'))));
+        $row2->addColumn(4, new \Ease\TWB5\FormGroup(_('Priority'), new \Ease\Html\InputNumberTag('priority', (string) ($eventRule->getDataValue('priority') ?: '0'))));
+        $row2->addColumn(4, new \Ease\TWB5\FormGroup(
             _('Enabled'),
             new \Ease\Html\SelectTag('enabled', ['0' => _('No'), '1' => _('Yes')], (string) ($eventRule->getDataValue('enabled') ?: '1')),
         ));
 
-        $row3 = new \Ease\TWB4\Row();
-        $row3->addColumn(12, new \Ease\TWB4\FormGroup(
+        $row3 = new \Ease\TWB5\Row();
+        $row3->addColumn(12, new \Ease\TWB5\FormGroup(
             _('Environment Variable Mapping (JSON)'),
             new \Ease\Html\TextareaTag('env_mapping', $eventRule->getDataValue('env_mapping') ?: '{"RECORD_ID": "recordid", "EVIDENCE": "evidence", "OPERATION": "operation"}', ['rows' => '4', 'class' => 'form-control']),
         ));
@@ -53,19 +53,19 @@ class EventRuleForm extends SecureForm
 
         parent::__construct(['action' => 'eventrule.php', 'method' => 'POST'], $formContents);
 
-        $submitRow = new \Ease\TWB4\Row();
+        $submitRow = new \Ease\TWB5\Row();
 
-        $submitRow->addColumn(10, new \Ease\TWB4\SubmitButton('🍏 '._('Apply'), 'primary btn-lg btn-block', ['title' => _('Apply changes')]));
+        $submitRow->addColumn(10, new \Ease\TWB5\SubmitButton('🍏 '._('Apply'), 'primary btn-lg btn-block', ['title' => _('Apply changes')]));
 
         if (null === $eventRule->getMyKey()) {
-            $submitRow->addColumn(2, new \Ease\TWB4\SubmitButton('⚰️ '._('Remove').' !', 'disabled btn-lg btn-block', ['disabled' => 'true']));
+            $submitRow->addColumn(2, new \Ease\TWB5\SubmitButton('⚰️ '._('Remove').' !', 'disabled btn-lg btn-block', ['disabled' => 'true']));
         } else {
             $this->addItem(new \Ease\Html\InputHiddenTag('id', $eventRule->getMyKey()));
 
             if (WebPage::getRequestValue('remove') === 'true') {
-                $submitRow->addColumn(2, new \Ease\TWB4\LinkButton('eventrule.php?delete='.$eventRule->getMyKey(), '⚰️ '._('Remove').' !', 'danger btn-lg btn-block'));
+                $submitRow->addColumn(2, new \Ease\TWB5\LinkButton('eventrule.php?delete='.$eventRule->getMyKey(), '⚰️ '._('Remove').' !', 'danger btn-lg btn-block'));
             } else {
-                $submitRow->addColumn(2, new \Ease\TWB4\LinkButton('eventrule.php?id='.$eventRule->getMyKey().'&remove=true', '⚰️ '._('Remove').' ?', 'warning btn-lg btn-block'));
+                $submitRow->addColumn(2, new \Ease\TWB5\LinkButton('eventrule.php?id='.$eventRule->getMyKey().'&remove=true', '⚰️ '._('Remove').' ?', 'warning btn-lg btn-block'));
             }
         }
 

@@ -36,8 +36,8 @@ if (!$runTemplate->getMyKey()) {
 
     WebPage::singleton()->addItem(new PageTop(_('Job').' #'.$jobID));
 
-    $jobPanel = new \Ease\TWB4\Panel(_('Job Information'), 'warning');
-    $jobPanel->addItem(new \Ease\TWB4\Alert('warning', [
+    $jobPanel = new \Ease\TWB5\Panel(_('Job Information'), 'warning');
+    $jobPanel->addItem(new \Ease\TWB5\Alert('warning', [
         '⚠️ ',
         _('The RunTemplate associated with this job has been deleted. Job information is limited.'),
     ]));
@@ -54,7 +54,7 @@ if (!$runTemplate->getMyKey()) {
 
     $jobPanel->addItem($infoDiv);
 
-    $outputTabs = new \Ease\TWB4\Tabs();
+    $outputTabs = new \Ease\TWB5\Tabs();
     $stdTerminal = new \Ease\Html\DivTag(nl2br(str_replace('background-color: black; ', '', (new \SensioLabs\AnsiConverter\AnsiToHtmlConverter())->convert(stripslashes((string) $jobber->getDataValue('stdout'))))), ['style' => 'background: black; font-family: monospace;']);
     $errorTerminal = new \Ease\Html\DivTag(nl2br(str_replace('background-color: black; ', '', (new \SensioLabs\AnsiConverter\AnsiToHtmlConverter())->convert(stripslashes((string) $jobber->getDataValue('stderr'))))), ['style' => 'background: #330000; font-family: monospace;']);
 
@@ -64,7 +64,7 @@ if (!$runTemplate->getMyKey()) {
     $jobPanel->addItem($outputTabs);
 
     WebPage::singleton()->container->addItem($jobPanel);
-    WebPage::singleton()->container->addItem(new \Ease\TWB4\LinkButton('main.php', _('Back to Dashboard'), 'primary'));
+    WebPage::singleton()->container->addItem(new \Ease\TWB5\LinkButton('main.php', _('Back to Dashboard'), 'primary'));
     WebPage::singleton()->addItem(new PageBottom());
     WebPage::singleton()->draw();
 
@@ -100,16 +100,16 @@ $orphanedWarning = null;
 
 if (!$jobber->getDataValue('begin') && !$jobber->isScheduled()) {
     // Job not started and not in schedule queue - it's orphaned
-    $orphanedWarning = new \Ease\TWB4\Alert('warning', [
+    $orphanedWarning = new \Ease\TWB5\Alert('warning', [
         new \Ease\Html\H4Tag(['⚠️ ', _('Orphaned Job')]),
         new \Ease\Html\PTag(_('This job has not been executed yet and does not have its place in the execution queue. This can happen when the schedule queue is manually cleared or due to system errors.')),
         new \Ease\Html\PTag([_('Use the '), new \Ease\Html\StrongTag(_('Re-schedule')), _(' button below to add this job back to the queue.')]),
     ], ['style' => 'border-left: 5px solid #ff9800;']);
 }
 
-$outputTabs = new \Ease\TWB4\Tabs();
-$outputTabs->addTab(_('Output').' '.(\strlen($jobber->getOutput()) ? ' <span class="badge badge-secondary">'.substr_count($jobber->getOutput(), "\n").'</span>' : '<span class="badge badge-invers">💭</span>'), [$stdTerminal, \strlen($jobber->getOutput()) ? new \Ease\TWB4\LinkButton('joboutput.php?id='.$jobID.'&mode=std', _('Download'), 'secondary btn-block') : _('No output'), new \Ease\Html\PreTag('', ['id' => 'live-output'])]);
-$outputTabs->addTab(_('Errors').' '.(empty($jobber->getErrorOutput()) ? ' <span class="badge badge-success">0</span>' : '<span class="badge badge-warning">'.substr_count($jobber->getErrorOutput(), "\n").'</span>'), [$errorTerminal, \strlen($jobber->getErrorOutput()) ? new \Ease\TWB4\LinkButton('joboutput.php?id='.$jobID.'&mode=err', _('Download'), 'secondary btn-block') : _('No errors')], empty($jobber->getOutput()));
+$outputTabs = new \Ease\TWB5\Tabs();
+$outputTabs->addTab(_('Output').' '.(\strlen($jobber->getOutput()) ? ' <span class="badge badge-secondary">'.substr_count($jobber->getOutput(), "\n").'</span>' : '<span class="badge badge-invers">💭</span>'), [$stdTerminal, \strlen($jobber->getOutput()) ? new \Ease\TWB5\LinkButton('joboutput.php?id='.$jobID.'&mode=std', _('Download'), 'secondary btn-block') : _('No output'), new \Ease\Html\PreTag('', ['id' => 'live-output'])]);
+$outputTabs->addTab(_('Errors').' '.(empty($jobber->getErrorOutput()) ? ' <span class="badge badge-success">0</span>' : '<span class="badge badge-warning">'.substr_count($jobber->getErrorOutput(), "\n").'</span>'), [$errorTerminal, \strlen($jobber->getErrorOutput()) ? new \Ease\TWB5\LinkButton('joboutput.php?id='.$jobID.'&mode=err', _('Download'), 'secondary btn-block') : _('No errors')], empty($jobber->getOutput()));
 
 $artifactor = new \MultiFlexi\Artifact();
 $artifacts = $artifactor->listingQuery()->where('job_id', $jobID);
@@ -133,7 +133,7 @@ if ($artifacts->count()) {
                 break;
         }
 
-        $artifactsDiv->addItem(new \Ease\TWB4\Panel([new \Ease\Html\ATag('getartifact.php?id='.$artifactData['id'], '💾', ['class' => 'btn btn-info btn-sm']), '&nbsp;'.htmlspecialchars((string) ($artifactData['filename'] ?? ''), \ENT_QUOTES | \ENT_HTML5, 'UTF-8')], 'inverse', new \Ease\Html\DivTag(new \Ease\Html\PreTag('<code>'.htmlspecialchars((string) $code, \ENT_QUOTES | \ENT_HTML5, 'UTF-8').'</code>'), ['style' => 'font-family: monospace; color: black']), htmlspecialchars((string) ($artifactData['note'] ?? ''), \ENT_QUOTES | \ENT_HTML5, 'UTF-8')));
+        $artifactsDiv->addItem(new \Ease\TWB5\Panel([new \Ease\Html\ATag('getartifact.php?id='.$artifactData['id'], '💾', ['class' => 'btn btn-info btn-sm']), '&nbsp;'.htmlspecialchars((string) ($artifactData['filename'] ?? ''), \ENT_QUOTES | \ENT_HTML5, 'UTF-8')], 'inverse', new \Ease\Html\DivTag(new \Ease\Html\PreTag('<code>'.htmlspecialchars((string) $code, \ENT_QUOTES | \ENT_HTML5, 'UTF-8').'</code>'), ['style' => 'font-family: monospace; color: black']), htmlspecialchars((string) ($artifactData['note'] ?? ''), \ENT_QUOTES | \ENT_HTML5, 'UTF-8')));
     }
 
     $outputTabs->addTab(_('Artifacts').' <span class="badge badge-success">'.$artifacts->count().'</span>', $artifactsDiv);
@@ -141,19 +141,19 @@ if ($artifacts->count()) {
 
 $runTemplateButton = new RuntemplateButton($runTemplate);
 
-// $relaunchButton = new \Ease\TWB4\LinkButton('launch.php?id='.$runTemplate->getMyKey().'&app_id='.$appInfo['app_id'].'&company_id='.$appInfo['company_id'], '&lt;'._('Relaunch').'💨', 'success btn-lg btn-block');
+// $relaunchButton = new \Ease\TWB5\LinkButton('launch.php?id='.$runTemplate->getMyKey().'&app_id='.$appInfo['app_id'].'&company_id='.$appInfo['company_id'], '&lt;'._('Relaunch').'💨', 'success btn-lg btn-block');
 
 if ($jobber->getDataValue('begin')) {
     // Job already started/finished
-    $scheduleButton = new \Ease\TWB4\LinkButton('schedule.php?id='.$runTemplate->getMyKey().'&app_id='.$appInfo['app_id'].'&company_id='.$appInfo['company_id'], [_('Schedule').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/launchinbackground.svg', _('Launch'), ['height' => '30px'])], 'primary btn-block', ['title' => _('Schedule new run based on this RunTemplate'), 'id' => 'schedulebutton']);
+    $scheduleButton = new \Ease\TWB5\LinkButton('schedule.php?id='.$runTemplate->getMyKey().'&app_id='.$appInfo['app_id'].'&company_id='.$appInfo['company_id'], [_('Schedule').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/launchinbackground.svg', _('Launch'), ['height' => '30px'])], 'primary btn-block', ['title' => _('Schedule new run based on this RunTemplate'), 'id' => 'schedulebutton']);
 } else {
     // Job not started yet - check if scheduled
     if ($jobber->isScheduled()) {
         // Job is in schedule queue - allow cancellation
-        $scheduleButton = new \Ease\TWB4\LinkButton('schedule.php?cancel='.$jobber->getMyKey().'&templateid='.$runTemplate->getMyKey().'&app_id='.$jobber->getDataValue('app_id').'&company_id='.$runTemplate->getDataValue('company_id'), [_('Cancel').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/cancel.svg', _('Cancel').'&nbsp;&nbsp;', ['height' => '60px'])], 'warning btn-block');
+        $scheduleButton = new \Ease\TWB5\LinkButton('schedule.php?cancel='.$jobber->getMyKey().'&templateid='.$runTemplate->getMyKey().'&app_id='.$jobber->getDataValue('app_id').'&company_id='.$runTemplate->getDataValue('company_id'), [_('Cancel').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/cancel.svg', _('Cancel').'&nbsp;&nbsp;', ['height' => '60px'])], 'warning btn-block');
     } else {
         // Orphaned job - no schedule entry, allow re-scheduling
-        $scheduleButton = new \Ease\TWB4\LinkButton('reschedule.php?job_id='.$jobber->getMyKey(), ['⏰ '._('Re-schedule')], 'danger btn-block');
+        $scheduleButton = new \Ease\TWB5\LinkButton('reschedule.php?job_id='.$jobber->getMyKey(), ['⏰ '._('Re-schedule')], 'danger btn-block');
     }
 }
 
@@ -192,27 +192,27 @@ if ($deleteAction === 'delete' && WebPage::isPosted()) {
 $previousJobId = $jobber->getPreviousJobId(true, true, true);
 
 if ($previousJobId) {
-    $previousButton = new \Ease\TWB4\LinkButton('job.php?id='.$previousJobId, '◀️ '._('Previous').' 🏁', 'info btn-lg btn-block');
+    $previousButton = new \Ease\TWB5\LinkButton('job.php?id='.$previousJobId, '◀️ '._('Previous').' 🏁', 'info btn-lg btn-block');
 } else {
-    $previousButton = new \Ease\TWB4\LinkButton('#', '◀️ '._('Previous').' 🏁', 'info btn-lg btn-block disabled');
+    $previousButton = new \Ease\TWB5\LinkButton('#', '◀️ '._('Previous').' 🏁', 'info btn-lg btn-block disabled');
 }
 
 $nextJobId = $jobber->getNextJobId(true, true, true);
 
 if ($nextJobId) {
-    $nextButton = new \Ease\TWB4\LinkButton('job.php?id='.$nextJobId, '🏁 '._('Next').' ▶️️', 'info btn-lg btn-block');
+    $nextButton = new \Ease\TWB5\LinkButton('job.php?id='.$nextJobId, '🏁 '._('Next').' ▶️️', 'info btn-lg btn-block');
 } else {
-    $nextButton = new \Ease\TWB4\LinkButton('#', '🏁 '._('Next').' ▶️️', 'info btn-lg btn-block disabled');
+    $nextButton = new \Ease\TWB5\LinkButton('#', '🏁 '._('Next').' ▶️️', 'info btn-lg btn-block disabled');
 }
 
 // Delete button with confirmation - using SecureForm for CSRF protection
 $deleteForm = new \MultiFlexi\Ui\SecureForm(['method' => 'POST', 'action' => 'job.php?id='.$jobID]);
 $deleteForm->addItem(new \Ease\Html\InputHiddenTag('action', 'delete'));
 $deleteForm->addItem(new \Ease\Html\InputHiddenTag('confirm_delete', 'yes'));
-$deleteButton = new \Ease\TWB4\SubmitButton('🗑️ '._('Delete'), 'danger btn-lg btn-block', ['onclick' => 'return confirm("'.htmlspecialchars(_('Are you sure you want to delete this job? This action cannot be undone.')).'");']);
+$deleteButton = new \Ease\TWB5\SubmitButton('🗑️ '._('Delete'), 'danger btn-lg btn-block', ['onclick' => 'return confirm("'.htmlspecialchars(_('Are you sure you want to delete this job? This action cannot be undone.')).'");']);
 $deleteForm->addItem($deleteButton);
 
-$jobFoot = new \Ease\TWB4\Row();
+$jobFoot = new \Ease\TWB5\Row();
 $jobFoot->addColumn(2, $previousButton);
 $jobFoot->addColumn(2, $nextButton);
 $jobFoot->addColumn(2, $scheduleButton);

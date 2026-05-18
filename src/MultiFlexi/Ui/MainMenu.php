@@ -43,7 +43,7 @@ class MainMenu extends \Ease\Html\DivTag
             $oPage = WebPage::singleton();
 
             // Add Home link
-            $nav->addMenuItem(new \Ease\Html\ATag('home.php', new \Ease\TWB4\Widgets\FaIcon('home').' '._('Home')));
+            $nav->addMenuItem(new \Ease\Html\ATag('home.php', new \Ease\TWB5\Widgets\FaIcon('home').' '._('Home')));
 
             $customers = $this->getMenuList(new \MultiFlexi\Customer(), null, WebPage::singleton()->customer);
             $companies = $this->getMenuList(new \MultiFlexi\Company(), 'logo');
@@ -66,7 +66,7 @@ class MainMenu extends \Ease\Html\DivTag
                     if (\count($customers) && empty($companies)) {
                         \MultiFlexi\User::singleton()->addStatusMessage(_('No company registered yet. Please register one.'), 'warning');
                         $this->customersMenuEnabled($nav, $customers);
-                        $nav->addMenuItem(new \Ease\TWB4\LinkButton('companysetup.php', '🏭 '._('Companies'), 'warning'), 'right');
+                        $nav->addMenuItem(new \Ease\TWB5\LinkButton('companysetup.php', '🏭 '._('Companies'), 'warning'), 'right');
                     } else { // We Got All
                         //                        $this->customersMenuEnabled($nav, $customers);
                         $this->companiesMenuEnabled($nav, $companies);
@@ -76,7 +76,7 @@ class MainMenu extends \Ease\Html\DivTag
 
             if (empty($apps)) {
                 \MultiFlexi\User::singleton()->addStatusMessage(_('No application registered yet. Please register one.'), 'warning');
-                $nav->addMenuItem(new \Ease\TWB4\LinkButton('app.php', '<img width=30 src=images/apps.svg> '._('Applications'), 'warning'), 'right');
+                $nav->addMenuItem(new \Ease\TWB5\LinkButton('app.php', '<img width=30 src=images/apps.svg> '._('Applications'), 'warning'), 'right');
             } else {
                 $this->appsMenuEnabled($nav, $apps);
             }
@@ -94,14 +94,14 @@ class MainMenu extends \Ease\Html\DivTag
 
             // Privacy menu with dropdown
             $privacyMenu = [
-                'consent-preferences.php' => new \Ease\TWB4\Widgets\FaIcon('user-shield').' '._('Privacy Preferences'),
-                'data-export-page.php' => new \Ease\TWB4\Widgets\FaIcon('download').' '._('Export My Data'),
-                'gdpr-user-deletion-request.php' => new \Ease\TWB4\Widgets\FaIcon('user-times').' '._('Request Account Deletion'),
+                'consent-preferences.php' => new \Ease\TWB5\Widgets\FaIcon('user-shield').' '._('Privacy Preferences'),
+                'data-export-page.php' => new \Ease\TWB5\Widgets\FaIcon('download').' '._('Export My Data'),
+                'gdpr-user-deletion-request.php' => new \Ease\TWB5\Widgets\FaIcon('user-times').' '._('Request Account Deletion'),
                 '' => '',
-                'privacy-policy.php' => new \Ease\TWB4\Widgets\FaIcon('shield-alt').' '._('Privacy Policy'),
-                'cookie-policy.php' => new \Ease\TWB4\Widgets\FaIcon('cookie-bite').' '._('Cookie Policy'),
+                'privacy-policy.php' => new \Ease\TWB5\Widgets\FaIcon('shield-alt').' '._('Privacy Policy'),
+                'cookie-policy.php' => new \Ease\TWB5\Widgets\FaIcon('cookie-bite').' '._('Cookie Policy'),
             ];
-            $nav->addDropDownMenu(new \Ease\TWB4\Widgets\FaIcon('user-shield').' '._('Privacy'), $privacyMenu);
+            $nav->addDropDownMenu(new \Ease\TWB5\Widgets\FaIcon('user-shield').' '._('Privacy'), $privacyMenu);
 
             $nav->addMenuItem(new \Ease\Html\ATag('logout.php', '<img height=30 src=images/application-exit.svg> '._('Sign Off')), 'right');
 
@@ -118,7 +118,7 @@ class MainMenu extends \Ease\Html\DivTag
         }
 
         // Add language selector for all users (logged in or not) - placed last to appear on far right
-        $nav->addMenuItem(new \Ease\TWB4\Widgets\LangSelect('locale'), 'right');
+        $nav->addMenuItem(new \Ease\TWB5\Widgets\LangSelect('locale'), 'right');
     }
 
     /**
@@ -196,7 +196,7 @@ class MainMenu extends \Ease\Html\DivTag
      */
     public function companiesMenuDisabled($nav): void
     {
-        $nav->addMenuItem(new \Ease\TWB4\LinkButton('companysetup.php', '<img width=30 src=images/company.svg> '._('Companies'), 'warning', ['class' => 'nav-link']));
+        $nav->addMenuItem(new \Ease\TWB5\LinkButton('companysetup.php', '<img width=30 src=images/company.svg> '._('Companies'), 'warning', ['class' => 'nav-link']));
     }
 
     /**
@@ -228,7 +228,7 @@ class MainMenu extends \Ease\Html\DivTag
         $nav->addDropDownMenu(
             '<img width=30 src=images/system-users.svg> '._('Admin'),
             array_merge([
-                'profile.php' => new \Ease\TWB4\Widgets\FaIcon('user-circle').'&nbsp;'._('My Profile'),
+                'profile.php' => new \Ease\TWB5\Widgets\FaIcon('user-circle').'&nbsp;'._('My Profile'),
                 'createaccount.php' => '🤬&nbsp;'._('New Admin'),
                 'createuser.php' => '👤&nbsp;'._('New User Account'),
                 'envmods.php' => '🌦️&nbsp;'._('Environment Modules'),
@@ -239,7 +239,7 @@ class MainMenu extends \Ease\Html\DivTag
                 'admin-deletion-requests.php' => '🗑️&nbsp;'._('Deletion Requests'),
                 'admin-data-corrections.php' => '✏️&nbsp;'._('Data Corrections'),
                 '' => '',
-                'users.php' => new \Ease\TWB4\Widgets\FaIcon('list').'&nbsp;'._('Users'),
+                'users.php' => new \Ease\TWB5\Widgets\FaIcon('list').'&nbsp;'._('Users'),
             ], $this->getMenuList(\Ease\Shared::user())),
         );
     }

@@ -39,7 +39,7 @@ class CustomAppConfigForm extends EngineForm
 
         foreach (\MultiFlexi\Conffield::getAppConfigs(new \MultiFlexi\Application($engine->getDataValue('app_id'))) as $fieldInfo) {
             if ($fieldInfo['type'] === 'checkbox') {
-                $input = new \Ease\Html\DivTag(new \Ease\TWB4\Widgets\Toggle($fieldInfo['keyname'], \array_key_exists($fieldInfo['keyname'], $values) ? ($values[$fieldInfo['keyname']]['value'] === 'true' ? true : false) : $fieldInfo['defval'], 'true', []));
+                $input = new \Ease\Html\DivTag(new \Ease\TWB5\Widgets\Toggle($fieldInfo['keyname'], \array_key_exists($fieldInfo['keyname'], $values) ? ($values[$fieldInfo['keyname']]['value'] === 'true' ? true : false) : $fieldInfo['defval'], 'true', []));
             } else {
                 $input = new \Ease\Html\InputTag($fieldInfo['keyname'], \array_key_exists($fieldInfo['keyname'], $values) ? $values[$fieldInfo['keyname']]['value'] : $fieldInfo['defval'], ['type' => $fieldInfo['type']]);
             }
@@ -49,6 +49,6 @@ class CustomAppConfigForm extends EngineForm
 
         $this->addItem(new \Ease\Html\InputHiddenTag('app_id', $engine->getDataValue('app_id')));
         $this->addItem(new \Ease\Html\InputHiddenTag('company_id', $engine->getDataValue('company_id')));
-        $this->addItem(new \Ease\TWB4\SubmitButton(_('Save'), 'success btn-lg btn-block'));
+        $this->addItem(new \Ease\TWB5\SubmitButton(_('Save'), 'success btn-lg btn-block'));
     }
 }

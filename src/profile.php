@@ -35,7 +35,7 @@ WebPage::singleton()->addItem(new PageTop(_('My Profile')));
 $container = WebPage::singleton()->container;
 
 // Profile header section
-$profileHeader = new \Ease\TWB4\Card(_('Profile Information'));
+$profileHeader = new \Ease\TWB5\Card(_('Profile Information'));
 $profileHeader->addItem(new \Ease\Html\DivTag([
     new \Ease\Html\H4Tag($currentUser->getUserName()),
     new \Ease\Html\PTag([
@@ -55,14 +55,14 @@ $profileHeader->addItem(new \Ease\Html\DivTag([
 $container->addItem($profileHeader);
 
 // Data correction form
-$correctionFormCard = new \Ease\TWB4\Card(_('Update Personal Information'));
+$correctionFormCard = new \Ease\TWB5\Card(_('Update Personal Information'));
 $correctionForm = new UserDataCorrectionForm($currentUser);
 $correctionFormCard->addItem($correctionForm);
 
 $container->addItem($correctionFormCard);
 
 // GDPR Information section
-$gdprInfo = new \Ease\TWB4\Card(_('Your Rights Under GDPR'));
+$gdprInfo = new \Ease\TWB5\Card(_('Your Rights Under GDPR'));
 $gdprInfo->addItem(new \Ease\Html\PTag(_('Under the General Data Protection Regulation (GDPR), you have several rights regarding your personal data:')));
 
 $rightsList = new \Ease\Html\UlTag([
@@ -72,7 +72,7 @@ $rightsList = new \Ease\Html\UlTag([
     ]),
     new \Ease\Html\LiTag([
         new \Ease\Html\StrongTag(_('Right of Access (Article 15)').': '),
-        new \Ease\TWB4\LinkButton('data-export.php', _('Export your data'), 'info', ['size' => 'sm', 'title' => _('Export your personal data'), 'id' => 'exportdatabutton']),
+        new \Ease\TWB5\LinkButton('data-export.php', _('Export your data'), 'info', ['size' => 'sm', 'title' => _('Export your personal data'), 'id' => 'exportdatabutton']),
     ]),
     new \Ease\Html\LiTag([
         new \Ease\Html\StrongTag(_('Right to be Forgotten (Article 17)').': '),
@@ -92,7 +92,7 @@ $auditLogger = new \MultiFlexi\Audit\UserDataAuditLogger();
 $recentChanges = $auditLogger->getUserAuditLog($currentUser->getId(), 10);
 
 if (!empty($recentChanges)) {
-    $auditCard = new \Ease\TWB4\Card(_('Recent Data Changes'));
+    $auditCard = new \Ease\TWB5\Card(_('Recent Data Changes'));
 
     $auditTable = new \Ease\Html\TableTag(null, ['class' => 'table table-sm']);
     $auditTable->addRowHeaderColumns([
@@ -109,19 +109,19 @@ if (!empty($recentChanges)) {
 
         switch ($change['change_type']) {
             case 'direct':
-                $changeTypeBadge = new \Ease\TWB4\Badge(_('Direct'), 'success');
+                $changeTypeBadge = new \Ease\TWB5\Badge(_('Direct'), 'success');
 
                 break;
             case 'pending_approval':
-                $changeTypeBadge = new \Ease\TWB4\Badge(_('Pending'), 'warning');
+                $changeTypeBadge = new \Ease\TWB5\Badge(_('Pending'), 'warning');
 
                 break;
             case 'approved':
-                $changeTypeBadge = new \Ease\TWB4\Badge(_('Approved'), 'success');
+                $changeTypeBadge = new \Ease\TWB5\Badge(_('Approved'), 'success');
 
                 break;
             case 'rejected':
-                $changeTypeBadge = new \Ease\TWB4\Badge(_('Rejected'), 'danger');
+                $changeTypeBadge = new \Ease\TWB5\Badge(_('Rejected'), 'danger');
 
                 break;
         }

@@ -37,7 +37,7 @@ class RequirementsOverview extends \Ease\Html\DivTag
             try {
                 if (class_exists($formClass, true)) {
                     $instance = new $formClass();
-                    $reqCard = new \Ease\TWB4\Card(null, ['style' => 'width: 18rem;']);
+                    $reqCard = new \Ease\TWB5\Card(null, ['style' => 'width: 18rem;']);
                     $reqCard->addItem(new \Ease\Html\ImgTag('images/'.$formClass::logo(), $req, ['title' => $req, 'height' => 40, 'class' => 'card-img-top']));
                     $reqCard->addItem(new \Ease\Html\DivTag(new \Ease\Html\H5Tag($formClass::name()), ['class' => 'card-title']));
                     $reqCard->addItem(new \Ease\Html\DivTag(new \Ease\Html\PTag($formClass::description()), ['class' => 'card-text']));
@@ -58,12 +58,12 @@ class RequirementsOverview extends \Ease\Html\DivTag
                     $name = $credentialType->getDataValue('name') ?: $req;
                     $description = $credentialType->getDataValue('description') ?: '';
 
-                    $reqCard = new \Ease\TWB4\Card();
+                    $reqCard = new \Ease\TWB5\Card();
                     $reqCard->addItem(new \Ease\Html\ImgTag($logo, $name, ['title' => $description ?: $name, 'height' => 40, 'class' => 'card-img-top']));
                     $reqCard->addItem(new \Ease\Html\DivTag(new \Ease\Html\H5Tag($name), ['class' => 'card-body']));
                 } else {
                     // Final fallback for unknown requirements
-                    $reqCard = new \Ease\TWB4\Card();
+                    $reqCard = new \Ease\TWB5\Card();
                     $reqCard->addItem(new \Ease\Html\DivTag(new \Ease\Html\H5Tag($req), ['class' => 'card-body']));
                     $reqCard->addItem(new \Ease\Html\SmallTag(_('Credential Type'), ['class' => 'text-muted']));
                 }

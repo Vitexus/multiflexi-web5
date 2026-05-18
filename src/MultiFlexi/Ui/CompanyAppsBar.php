@@ -33,7 +33,7 @@ class CompanyAppsBar extends \Ease\Html\DivTag
         $cardGroup = new \Ease\Html\DivTag(null, ['class' => 'card-group']);
 
         foreach ($companyApps as $companyApp) {
-            $companyAppCard = new \Ease\TWB4\Card(new \Ease\Html\ATag('companyapp.php?company_id='.$company->getMyKey().'&app_id='.$companyApp['id'], new \Ease\Html\ImgTag('appimage.php?uuid='.$companyApp['uuid'], _($companyApp['name']), ['title' => _($companyApp['description']), 'class' => 'card-img-top', 'width' => '150', 'height' => '150', 'style' => 'padding: 5px; margin: 5px;max-height: 150px;max-width: 150px;object-fit: contain;'])), ['style' => 'width: 10rem; min-width: 120px;']);
+            $companyAppCard = new \Ease\TWB5\Card(new \Ease\Html\ATag('companyapp.php?company_id='.$company->getMyKey().'&app_id='.$companyApp['id'], new \Ease\Html\ImgTag('appimage.php?uuid='.$companyApp['uuid'], _($companyApp['name']), ['title' => _($companyApp['description']), 'class' => 'card-img-top', 'width' => '150', 'height' => '150', 'style' => 'padding: 5px; margin: 5px;max-height: 150px;max-width: 150px;object-fit: contain;'])), ['style' => 'width: 10rem; min-width: 120px;']);
             $companyAppCard->addTagClass('text-center');
             // Get last executed job (begin is not null)
             $lastJobInfo = $jobber->listingQuery()
@@ -76,7 +76,7 @@ class CompanyAppsBar extends \Ease\Html\DivTag
                     new ExitCode($job['exitcode'], ['style' => 'font-size: 2.0em; font-family: monospace;']).$statusIcons,
                 );
             } else {
-                $companyAppStatus = new \Ease\TWB4\Badge('disabled', '🪤', ['style' => 'font-size: 2.0em; font-family: monospace;']);
+                $companyAppStatus = new \Ease\TWB5\Badge('disabled', '🪤', ['style' => 'font-size: 2.0em; font-family: monospace;']);
             }
 
             $companyAppCard->addItem(new \Ease\Html\DivTag(new \Ease\Html\H5Tag(_($companyApp['name']), ['class' => 'card-title']), ['class' => 'card-body']));

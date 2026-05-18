@@ -123,7 +123,7 @@ WebPage::singleton()->draw();
 /**
  * Create statistics card.
  */
-function createStatisticsCard(): \Ease\TWB4\Card
+function createStatisticsCard(): \Ease\TWB5\Card
 {
     $requests = new \Ease\SQL\Orm();
     $requests->setMyTable('user_deletion_requests');
@@ -135,9 +135,9 @@ function createStatisticsCard(): \Ease\TWB4\Card
         'rejected' => $requests->listingQuery()->where('status', 'rejected')->count(),
     ];
 
-    $card = new \Ease\TWB4\Card(_('Request Statistics'));
+    $card = new \Ease\TWB5\Card(_('Request Statistics'));
 
-    $row = new \Ease\TWB4\Row();
+    $row = new \Ease\TWB5\Row();
 
     foreach ($stats as $status => $count) {
         $badgeClass = match ($status) {
@@ -148,9 +148,9 @@ function createStatisticsCard(): \Ease\TWB4\Card
             default => 'secondary',
         };
 
-        $col = new \Ease\TWB4\Col(3);
+        $col = new \Ease\TWB5\Col(3);
         $col->addItem(new \Ease\Html\H4Tag($count));
-        $col->addItem(new \Ease\TWB4\Badge($badgeClass, ucfirst($status)));
+        $col->addItem(new \Ease\TWB5\Badge($badgeClass, ucfirst($status)));
         $row->addItem($col);
     }
 
@@ -162,9 +162,9 @@ function createStatisticsCard(): \Ease\TWB4\Card
 /**
  * Create filter form.
  */
-function createFilterForm(string $currentFilter): \Ease\TWB4\Form
+function createFilterForm(string $currentFilter): \Ease\TWB5\Form
 {
-    $form = new \Ease\TWB4\Form(['method' => 'GET', 'class' => 'form-inline mb-3']);
+    $form = new \Ease\TWB5\Form(['method' => 'GET', 'class' => 'form-inline mb-3']);
 
     $form->addItem(new \Ease\Html\LabelTag(_('Filter by Status: '), ['class' => 'mr-2']));
 
@@ -177,7 +177,7 @@ function createFilterForm(string $currentFilter): \Ease\TWB4\Form
     ], $currentFilter, ['class' => 'form-control mr-2']);
 
     $form->addItem($select);
-    $form->addItem(new \Ease\TWB4\SubmitButton(_('Filter'), 'primary', ['class' => 'btn-sm']));
+    $form->addItem(new \Ease\TWB5\SubmitButton(_('Filter'), 'primary', ['class' => 'btn-sm']));
 
     return $form;
 }
@@ -185,7 +185,7 @@ function createFilterForm(string $currentFilter): \Ease\TWB4\Form
 /**
  * Create requests table.
  */
-function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
+function createRequestsTable(string $statusFilter): \Ease\TWB5\Card
 {
     $requests = new \Ease\SQL\Orm();
     $requests->setMyTable('user_deletion_requests');
@@ -211,15 +211,15 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
 
     $requestList = $query->fetchAll();
 
-    $card = new \Ease\TWB4\Card(_('Deletion Requests'));
+    $card = new \Ease\TWB5\Card(_('Deletion Requests'));
 
     if (empty($requestList)) {
-        $card->addItem(new \Ease\TWB4\Alert(_('No requests found'), 'info'));
+        $card->addItem(new \Ease\TWB5\Alert(_('No requests found'), 'info'));
 
         return $card;
     }
 
-    $table = new \Ease\TWB4\Table(null, ['class' => 'table-striped table-hover']);
+    $table = new \Ease\TWB5\Table(null, ['class' => 'table-striped table-hover']);
 
     // Table header
     $header = new \Ease\Html\TheadTag();
@@ -260,7 +260,7 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
             'anonymize' => 'warning',
             default => 'secondary',
         };
-        $typeBadge = new \Ease\TWB4\Badge($typeClass, ucfirst($request['deletion_type']));
+        $typeBadge = new \Ease\TWB5\Badge($typeClass, ucfirst($request['deletion_type']));
         $row->addItem(new \Ease\Html\TdTag($typeBadge));
 
         // Status
@@ -271,7 +271,7 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
             'rejected' => 'danger',
             default => 'secondary',
         };
-        $statusBadge = new \Ease\TWB4\Badge($statusClass, ucfirst($request['status']));
+        $statusBadge = new \Ease\TWB5\Badge($statusClass, ucfirst($request['status']));
         $row->addItem(new \Ease\Html\TdTag($statusBadge));
 
         // Request date
@@ -281,12 +281,12 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
         $row->addItem(new \Ease\Html\TdTag($request['requested_by_login']));
 
         // Actions
-        $actions = new \Ease\TWB4\ButtonGroup(['size' => 'sm']);
+        $actions = new \Ease\TWB5\ButtonGroup(['size' => 'sm']);
 
         // View details button
-        $viewBtn = new \Ease\TWB4\LinkButton(
+        $viewBtn = new \Ease\TWB5\LinkButton(
             '#',
-            new \Ease\TWB4\Widgets\FaIcon('eye'),
+            new \Ease\TWB5\Widgets\FaIcon('eye'),
             'info',
             [
                 'data-bs-toggle' => 'modal',
@@ -299,7 +299,7 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
         // Approval/rejection buttons for pending requests
         if ($request['status'] === 'pending') {
             $approveBtn = new \Ease\Html\ButtonTag(
-                new \Ease\TWB4\Widgets\FaIcon('check'),
+                new \Ease\TWB5\Widgets\FaIcon('check'),
                 [
                     'type' => 'button',
                     'class' => 'btn btn-success btn-sm',
@@ -310,7 +310,7 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
             $actions->addItem($approveBtn);
 
             $rejectBtn = new \Ease\Html\ButtonTag(
-                new \Ease\TWB4\Widgets\FaIcon('times'),
+                new \Ease\TWB5\Widgets\FaIcon('times'),
                 [
                     'type' => 'button',
                     'class' => 'btn btn-danger btn-sm',
@@ -324,7 +324,7 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
         // Process button for approved requests
         if ($request['status'] === 'approved') {
             $processBtn = new \Ease\Html\ButtonTag(
-                new \Ease\TWB4\Widgets\FaIcon('cog'),
+                new \Ease\TWB5\Widgets\FaIcon('cog'),
                 [
                     'type' => 'button',
                     'class' => 'btn btn-warning btn-sm',
@@ -354,9 +354,9 @@ function createRequestsTable(string $statusFilter): \Ease\TWB4\Card
 /**
  * Create request details modal.
  */
-function createRequestModal(array $request): \Ease\TWB4\Modal
+function createRequestModal(array $request): \Ease\TWB5\Modal
 {
-    $modal = new \Ease\TWB4\Modal('requestModal'.$request['id'], _('Deletion Request Details'));
+    $modal = new \Ease\TWB5\Modal('requestModal'.$request['id'], _('Deletion Request Details'));
 
     $modal->addItem(new \Ease\Html\H5Tag(sprintf(_('Request #%d'), $request['id'])));
 
@@ -406,7 +406,7 @@ function createRequestModal(array $request): \Ease\TWB4\Modal
             $modal->addItem(new \Ease\Html\HrTag());
             $modal->addItem(new \Ease\Html\H6Tag(_('Audit Trail')));
 
-            $auditTable = new \Ease\TWB4\Table(null, ['class' => 'table-sm']);
+            $auditTable = new \Ease\TWB5\Table(null, ['class' => 'table-sm']);
             $auditHeader = new \Ease\Html\TheadTag();
             $auditHeaderRow = new \Ease\Html\TrTag();
             $auditHeaderRow->addItem(new \Ease\Html\ThTag(_('Date')));

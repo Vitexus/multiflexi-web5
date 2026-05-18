@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class JobHistoryTable extends \Ease\TWB4\Table
+class JobHistoryTable extends \Ease\TWB5\Table
 {
     public \MultiFlexi\Job $jobber;
     public int $limit = 50;
@@ -77,12 +77,12 @@ class JobHistoryTable extends \Ease\TWB4\Table
             $company->setDataValue('name', $job['name']);
 
             if ($this->showIcon) {
-                $job['uuid'] = new \Ease\Html\ATag('app.php?id='.$job['app_id'], [new \Ease\TWB4\Badge('light', [new \Ease\Html\ImgTag(empty($job['appimage']) ? 'appimage.php?uuid='.$job['uuid'] : $job['appimage'], _($job['appname']), ['width' => 60, 'height' => 60, 'style' => 'object-fit: contain;', 'title' => $job['appname']]), '&nbsp;', _($job['appname'])])]);
+                $job['uuid'] = new \Ease\Html\ATag('app.php?id='.$job['app_id'], [new \Ease\TWB5\Badge('light', [new \Ease\Html\ImgTag(empty($job['appimage']) ? 'appimage.php?uuid='.$job['uuid'] : $job['appimage'], _($job['appname']), ['width' => 60, 'height' => 60, 'style' => 'object-fit: contain;', 'title' => $job['appname']]), '&nbsp;', _($job['appname'])])]);
             } else {
                 unset($job['uuid']);
             }
 
-            $job['id'] = new \Ease\Html\ATag('job.php?id='.$job['id'], [new ExitCode($exitCode, ['style' => 'font-size: 1.0em; font-family: monospace;']), '<br>', new \Ease\TWB4\Badge('info', '🏁 '.$job['id'])], ['title' => _('Job Info')]);
+            $job['id'] = new \Ease\Html\ATag('job.php?id='.$job['id'], [new ExitCode($exitCode, ['style' => 'font-size: 1.0em; font-family: monospace;']), '<br>', new \Ease\TWB5\Badge('info', '🏁 '.$job['id'])], ['title' => _('Job Info')]);
             unset($job['appname'], $job['app_id']);
 
             if ($job['begin']) {
@@ -99,9 +99,9 @@ class JobHistoryTable extends \Ease\TWB4\Table
                 $userIcon = $isWebUser ? '👤' : '🖥️'; // Web user vs CLI/OS user
                 $userName = trim($job['firstname'].' '.$job['lastname']) ?: $job['login'];
                 $userBadgeClass = $isWebUser ? 'info' : 'secondary';
-                $userBadge = new \Ease\Html\ATag('user.php?id='.$job['launched_by'], new \Ease\TWB4\Badge($userBadgeClass, $userIcon.' '.$userName));
+                $userBadge = new \Ease\Html\ATag('user.php?id='.$job['launched_by'], new \Ease\TWB5\Badge($userBadgeClass, $userIcon.' '.$userName));
             } else {
-                $userBadge = new \Ease\TWB4\Badge('warning', '⏰ '._('Timer'));
+                $userBadge = new \Ease\TWB5\Badge('warning', '⏰ '._('Timer'));
             }
 
             $job['launched_by'] = [

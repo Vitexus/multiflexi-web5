@@ -65,7 +65,7 @@ class RuntemplateLaunchForm extends SecureForm
                     break;
                 case 'checkbox':
                     if (\array_key_exists($fieldKey, $env) === false) {
-                        $this->addInput(new \Ease\TWB4\Widgets\Toggle($fieldKey, $fieldProps['defval']), $fieldKey.'&nbsp;', $fieldProps['defval'], $fieldProps['description']);
+                        $this->addInput(new \Ease\TWB5\Widgets\Toggle($fieldKey, $fieldProps['defval']), $fieldKey.'&nbsp;', $fieldProps['defval'], $fieldProps['description']);
                     }
 
                     break;
@@ -80,7 +80,7 @@ class RuntemplateLaunchForm extends SecureForm
         }
 
         $this->addItem(new AppExecutorSelect($app));
-        $this->addItem(new \Ease\TWB4\SubmitButton([_('Launch now').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/rocket.svg', _('Launch'), ['height' => '30px'])], 'success btn-lg btn-block '));
-        $this->addItem(new \Ease\TWB4\LinkButton('schedule.php?app_id='.$appId.'&company_id='.$companyId, [_('Schedule').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/launchinbackground.svg', _('Launch'), ['height' => '30px'])], 'primary btn-lg'));
+        $this->addItem(new \Ease\TWB5\SubmitButton([_('Launch now').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/rocket.svg', _('Launch'), ['height' => '30px'])], 'success btn-lg btn-block '));
+        $this->addItem(new \Ease\TWB5\LinkButton('schedule.php?app_id='.$appId.'&company_id='.$companyId, [_('Schedule').'&nbsp;&nbsp;', new \Ease\Html\ImgTag('images/launchinbackground.svg', _('Launch'), ['height' => '30px'])], 'primary btn-lg'));
     }
 }

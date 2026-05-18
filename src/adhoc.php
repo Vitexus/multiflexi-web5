@@ -41,7 +41,7 @@ WebPage::singleton()->container->addItem($addAppForm);
 
 $apper = new \MultiFlexi\Application();
 
-$launchTabs = new \Ease\TWB4\Tabs();
+$launchTabs = new \Ease\TWB5\Tabs();
 
 foreach ($assigned as $assignedAppId) {
     $apper->loadFromSQL($assignedAppId);

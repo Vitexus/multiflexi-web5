@@ -15,9 +15,9 @@ declare(strict_types=1);
 
 namespace MultiFlexi\Ui;
 
-use Ease\TWB4\LinkButton;
-use Ease\TWB4\Panel;
-use Ease\TWB4\Row;
+use Ease\TWB5\LinkButton;
+use Ease\TWB5\Panel;
+use Ease\TWB5\Row;
 use MultiFlexi\Application;
 
 /**
@@ -58,9 +58,9 @@ class CompanyApplicationPanel extends Panel
         $usageDiv = new \Ease\Html\DivTag(null, ['class' => 'p-2 bg-light rounded shadow-sm border']);
         $usageDiv->addItem(new \Ease\Html\SmallTag(_('Active RunTemplates').': ', ['class' => 'font-weight-bold mb-1 d-block text-uppercase small text-secondary']));
 
-        $usageTable = new \Ease\TWB4\Table(null, ['class' => 'table table-sm table-hover mb-0', 'style' => 'font-size: 0.85rem;']);
+        $usageTable = new \Ease\TWB5\Table(null, ['class' => 'table table-sm table-hover mb-0', 'style' => 'font-size: 0.85rem;']);
         $usageTable->addRowColumns([
-            [new \Ease\Html\SmallTag(_('Count'), ['class' => 'text-muted']), '&nbsp;', new \Ease\TWB4\Badge('primary', (string) $crls->count())],
+            [new \Ease\Html\SmallTag(_('Count'), ['class' => 'text-muted']), '&nbsp;', new \Ease\TWB5\Badge('primary', (string) $crls->count())],
             $crls,
         ]);
 

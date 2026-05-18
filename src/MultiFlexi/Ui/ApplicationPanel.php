@@ -15,9 +15,9 @@ declare(strict_types=1);
 
 namespace MultiFlexi\Ui;
 
-use Ease\TWB4\LinkButton;
-use Ease\TWB4\Panel;
-use Ease\TWB4\Row;
+use Ease\TWB5\LinkButton;
+use Ease\TWB5\Panel;
+use Ease\TWB5\Row;
 use MultiFlexi\Application;
 
 /**
@@ -60,7 +60,7 @@ class ApplicationPanel extends Panel
             $usedByDiv->addItem(new \Ease\Html\SmallTag(_('Used by').': ', ['class' => 'font-weight-bold mb-1 d-block text-uppercase small text-secondary']));
 
             // Create compact table instead of cards
-            $usedByTable = new \Ease\TWB4\Table(null, ['class' => 'table table-sm table-hover mb-0', 'style' => 'font-size: 0.85rem;']);
+            $usedByTable = new \Ease\TWB5\Table(null, ['class' => 'table table-sm table-hover mb-0', 'style' => 'font-size: 0.85rem;']);
             // $usedByTable->addRowHeaderColumns([_('Company'), _('RunTemplates')]);
 
             foreach ($usedIncompanies as $companyInfo) {

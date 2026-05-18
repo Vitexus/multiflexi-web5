@@ -20,7 +20,7 @@ namespace MultiFlexi\Ui;
  *
  * @author vitex
  */
-class CredentialProtoTypeLister extends \Ease\TWB4\Table
+class CredentialProtoTypeLister extends \Ease\TWB5\Table
 {
     /**
      * Table CSS class.
@@ -74,7 +74,7 @@ class CredentialProtoTypeLister extends \Ease\TWB4\Table
                 $codeColor = $isPhpClass ? 'danger' : 'secondary';
 
                 // All prototypes now have full actions since they're all in database
-                $actions->addItem(new \Ease\TWB4\LinkButton(
+                $actions->addItem(new \Ease\TWB5\LinkButton(
                     'credentialprototype.php?id='.$protoTypeInfo['id'],
                     '🔧 '._('Edit'),
                     'info btn-sm',
@@ -83,19 +83,19 @@ class CredentialProtoTypeLister extends \Ease\TWB4\Table
 
                 // Only allow deletion of user-created prototypes, not PHP class ones
                 if (!$isPhpClass) {
-                    $actions->addItem(new \Ease\TWB4\LinkButton(
+                    $actions->addItem(new \Ease\TWB5\LinkButton(
                         'credentialprototype.php?delete='.$protoTypeInfo['id'],
                         '🗑️ '._('Delete'),
                         'danger btn-sm',
                         ['onclick' => 'return confirm(\''._('Really delete credential prototype?').'\');'],
                     ));
                 } else {
-                    $actions->addItem(new \Ease\TWB4\Badge('secondary', _('System')));
+                    $actions->addItem(new \Ease\TWB5\Badge('secondary', _('System')));
                 }
 
                 $row->addItem(new \Ease\Html\TdTag($protoTypeInfo['id']));
-                $row->addItem(new \Ease\Html\TdTag(new \Ease\TWB4\Badge($codeColor, $protoTypeInfo['code'])));
-                $row->addItem(new \Ease\Html\TdTag(new \Ease\TWB4\Badge($sourceColor, $protoTypeInfo['name'])));
+                $row->addItem(new \Ease\Html\TdTag(new \Ease\TWB5\Badge($codeColor, $protoTypeInfo['code'])));
+                $row->addItem(new \Ease\Html\TdTag(new \Ease\TWB5\Badge($sourceColor, $protoTypeInfo['name'])));
                 $row->addItem(new \Ease\Html\TdTag($protoTypeInfo['version'] ?: '1.0'));
                 $row->addItem(new \Ease\Html\TdTag(new \Ease\Html\SmallTag($protoTypeInfo['uuid'])));
                 $row->addItem(new \Ease\Html\TdTag($actions));

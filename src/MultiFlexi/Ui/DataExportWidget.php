@@ -18,11 +18,11 @@ namespace MultiFlexi\Ui;
 use Ease\Html\ButtonTag;
 use Ease\Html\DivTag;
 use Ease\Html\PTag;
-use Ease\TWB4\Badge;
-use Ease\TWB4\Card;
-use Ease\TWB4\Col;
-use Ease\TWB4\Row;
-use Ease\TWB4\Widgets\FaIcon;
+use Ease\TWB5\Badge;
+use Ease\TWB5\Card;
+use Ease\TWB5\Col;
+use Ease\TWB5\Row;
+use Ease\TWB5\Widgets\FaIcon;
 
 /**
  * GDPR Data Export Widget.

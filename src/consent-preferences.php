@@ -102,24 +102,24 @@ foreach ($consentTypes as $type => $config) {
 
     // Create panel with header
     $headerContent = new \Ease\Html\H5Tag([
-        new \Ease\TWB4\Widgets\FaIcon($config['icon'], ['class' => 'me-2']),
+        new \Ease\TWB5\Widgets\FaIcon($config['icon'], ['class' => 'me-2']),
         $config['name'],
     ], ['class' => 'mb-0']);
 
-    $panel = new \Ease\TWB4\Panel($headerContent, 'info');
+    $panel = new \Ease\TWB5\Panel($headerContent, 'info');
     $panel->addTagClass('mb-3');
 
     // Add description
     $panel->addItem(new \Ease\Html\PTag($config['description'], ['class' => 'card-text']));
 
     // Create switch
-    $switch = new \Ease\TWB4\Widgets\Toggle("consent_{$type}", $currentStatus);
+    $switch = new \Ease\TWB5\Widgets\Toggle("consent_{$type}", $currentStatus);
     $switch->setTagProperty('label', $config['name']);
 
     if ($config['required']) {
         $switch->setValue(true);
         $switch->setTagProperty('disabled', 'disabled');
-        $panel->addItem(new \Ease\TWB4\Badge('success', _('Required')));
+        $panel->addItem(new \Ease\TWB5\Badge('success', _('Required')));
         $panel->addItem(new \Ease\Html\PTag(''));
     }
 
@@ -137,9 +137,9 @@ foreach ($consentTypes as $type => $config) {
 }
 
 // Add save button
-$buttonRow = new \Ease\TWB4\Row();
-$buttonCol = new \Ease\TWB4\Col(12);
-$buttonCol->addItem(new \Ease\TWB4\SubmitButton(_('Save Preferences'), 'success', ['name' => 'save_consent', 'class' => 'btn-lg', 'id' => 'saveconsentpreferencesbutton']));
+$buttonRow = new \Ease\TWB5\Row();
+$buttonCol = new \Ease\TWB5\Col(12);
+$buttonCol->addItem(new \Ease\TWB5\SubmitButton(_('Save Preferences'), 'success', ['name' => 'save_consent', 'class' => 'btn-lg', 'id' => 'saveconsentpreferencesbutton']));
 $buttonRow->addItem($buttonCol);
 $formContainer->addItem($buttonRow);
 
@@ -160,15 +160,15 @@ WebPage::singleton()->container->addItem($form);
 
 // Add consent history section
 $historyHeaderContent = new \Ease\Html\H5Tag([
-    new \Ease\TWB4\Widgets\FaIcon('history', ['class' => 'me-2']),
+    new \Ease\TWB5\Widgets\FaIcon('history', ['class' => 'me-2']),
     _('Consent History'),
 ], ['class' => 'mb-0']);
 
-$historyPanel = new \Ease\TWB4\Panel($historyHeaderContent, 'secondary');
+$historyPanel = new \Ease\TWB5\Panel($historyHeaderContent, 'secondary');
 $historyPanel->addTagClass('mt-4');
 
 // Create table for consent history - temporarily disabled
-// $table = new \Ease\TWB4\Table();
+// $table = new \Ease\TWB5\Table();
 // $table->setTagProperty('class', 'table table-striped');
 // $table->addRowHeaderColumns([
 //     _('Consent Type'),
@@ -183,13 +183,13 @@ $table = new \Ease\Html\DivTag('Table temporarily disabled for debugging');
 /*
 if (!empty($currentConsent)) {
     foreach ($currentConsent as $type => $consent) {
-        $statusBadge = new \Ease\TWB4\Badge($consent['status'] ? 'success' : 'danger',
+        $statusBadge = new \Ease\TWB5\Badge($consent['status'] ? 'success' : 'danger',
                                            $consent['status'] ? _('Granted') : _('Denied'));
 
         $withdrawButton = '';
         if ($consent['status'] && $type !== ConsentManager::CONSENT_ESSENTIAL) {
-            $withdrawButton = new \Ease\TWB4\Button(
-                [new \Ease\TWB4\Widgets\FaIcon('times'), ' ', _('Withdraw')],
+            $withdrawButton = new \Ease\TWB5\Button(
+                [new \Ease\TWB5\Widgets\FaIcon('times'), ' ', _('Withdraw')],
                 'outline-danger',
                 ['size' => 'sm', 'onclick' => "withdrawConsent('{$type}')"]
             );
@@ -257,11 +257,11 @@ EOD);
 
 // Add information section
 $infoHeaderContent = new \Ease\Html\H5Tag([
-    new \Ease\TWB4\Widgets\FaIcon('info-circle', ['class' => 'me-2']),
+    new \Ease\TWB5\Widgets\FaIcon('info-circle', ['class' => 'me-2']),
     _('Important Information'),
 ], ['class' => 'mb-0']);
 
-$infoPanel = new \Ease\TWB4\Panel($infoHeaderContent, 'info');
+$infoPanel = new \Ease\TWB5\Panel($infoHeaderContent, 'info');
 $infoPanel->addTagClass('mt-4');
 
 $infoPanel->addItem(new \Ease\Html\UlTag([

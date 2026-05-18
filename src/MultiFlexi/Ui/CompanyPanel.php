@@ -27,7 +27,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class CompanyPanel extends \Ease\TWB4\Panel
+class CompanyPanel extends \Ease\TWB5\Panel
 {
     /**
      * @param \MultiFlexi\Company $company
@@ -37,7 +37,7 @@ class CompanyPanel extends \Ease\TWB4\Panel
     public function __construct($company, $content = null, $footer = null)
     {
         $cid = $company->getMyKey();
-        $headRow = new \Ease\TWB4\Row();
+        $headRow = new \Ease\TWB5\Row();
 
         $logoCol = $headRow->addColumn(2, new \Ease\Html\ATag('company.php?id='.$cid, [new CompanyLogo($company, ['style' => 'height: 60px', 'class' => 'img-thumbnail shadow-sm'])]));
         $logoCol->addTagClass('text-center my-auto');
@@ -48,12 +48,12 @@ class CompanyPanel extends \Ease\TWB4\Panel
         ]);
         $titleCol->addTagClass('my-auto');
 
-        $actionsRow = new \Ease\TWB4\Row();
-        $actionsRow->addColumn(4, new \Ease\TWB4\LinkButton('companysetup.php?id='.$cid, '🛠️&nbsp;'._('Setup'), 'outline-secondary btn-sm btn-block shadow-sm mb-1', ['title' => _('Setup Company')]));
-        $actionsRow->addColumn(4, new \Ease\TWB4\LinkButton('companyapps.php?company_id='.$cid, '📌&nbsp;'._('Applications'), 'outline-secondary btn-sm btn-block shadow-sm mb-1', ['title' => _('Manage Applications')]));
-        $actionsRow->addColumn(4, new \Ease\TWB4\LinkButton('activation-wizard.php?company='.$cid, '🧙&nbsp;'._('Wizard'), 'outline-primary btn-sm btn-block shadow-sm mb-1', ['title' => _('Activation Wizard')]));
-        $actionsRow->addColumn(4, new \Ease\TWB4\LinkButton('companycreds.php?company_id='.$cid, '🔐&nbsp;'._('Credentials'), 'outline-secondary btn-sm btn-block shadow-sm', ['title' => _('Manage Credentials')]));
-        $actionsRow->addColumn(4, new \Ease\TWB4\LinkButton('joblist.php?company_id='.$cid, '🏁&nbsp;'._('Jobs'), 'outline-info btn-sm btn-block shadow-sm', ['title' => _('Job List')]));
+        $actionsRow = new \Ease\TWB5\Row();
+        $actionsRow->addColumn(4, new \Ease\TWB5\LinkButton('companysetup.php?id='.$cid, '🛠️&nbsp;'._('Setup'), 'outline-secondary btn-sm btn-block shadow-sm mb-1', ['title' => _('Setup Company')]));
+        $actionsRow->addColumn(4, new \Ease\TWB5\LinkButton('companyapps.php?company_id='.$cid, '📌&nbsp;'._('Applications'), 'outline-secondary btn-sm btn-block shadow-sm mb-1', ['title' => _('Manage Applications')]));
+        $actionsRow->addColumn(4, new \Ease\TWB5\LinkButton('activation-wizard.php?company='.$cid, '🧙&nbsp;'._('Wizard'), 'outline-primary btn-sm btn-block shadow-sm mb-1', ['title' => _('Activation Wizard')]));
+        $actionsRow->addColumn(4, new \Ease\TWB5\LinkButton('companycreds.php?company_id='.$cid, '🔐&nbsp;'._('Credentials'), 'outline-secondary btn-sm btn-block shadow-sm', ['title' => _('Manage Credentials')]));
+        $actionsRow->addColumn(4, new \Ease\TWB5\LinkButton('joblist.php?company_id='.$cid, '🏁&nbsp;'._('Jobs'), 'outline-info btn-sm btn-block shadow-sm', ['title' => _('Job List')]));
 
         $headRow->addColumn(6, $actionsRow)->addTagClass('my-auto');
 

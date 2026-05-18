@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class ActionsAdministration extends \Ease\TWB4\Form
+class ActionsAdministration extends \Ease\TWB5\Form
 {
     public $modConf;
     private $actions;
@@ -41,7 +41,7 @@ class ActionsAdministration extends \Ease\TWB4\Form
 
             $actionClass = new $uiActionClass(new \MultiFlexi\RunTemplate());
 
-            $moduleRow = new \Ease\TWB4\Row();
+            $moduleRow = new \Ease\TWB5\Row();
 
             $moduleRow->addColumn(2, new ActionImage($action, ['height' => '50px']));
             $moduleRow->addColumn(4, [new \Ease\Html\StrongTag($uiActionClass::name()), new \Ease\Html\PTag(new \Ease\Html\SmallTag($uiActionClass::description()))]);
@@ -49,7 +49,7 @@ class ActionsAdministration extends \Ease\TWB4\Form
             $this->addItem(new \Ease\Html\PTag($moduleRow));
         }
 
-        $this->addItem(new \Ease\TWB4\SubmitButton(_('Save'), 'primary btn-lg btn-block', ['title' => _('Save Actions Configuration'), 'id' => 'saveactionsconfigbutton']));
+        $this->addItem(new \Ease\TWB5\SubmitButton(_('Save'), 'primary btn-lg btn-block', ['title' => _('Save Actions Configuration'), 'id' => 'saveactionsconfigbutton']));
     }
 
     public function finalize(): void

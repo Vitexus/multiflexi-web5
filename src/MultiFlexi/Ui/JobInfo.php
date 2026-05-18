@@ -34,7 +34,7 @@ class JobInfo extends \Ease\Html\DivTag
         $executorClass = '\\MultiFlexi\\Executor\\'.$job->getDataValue('executor');
         $executorImage = new ExecutorImage($job->getDataValue('executor'), ['height' => 20]);
 
-        $jobInfoRow = new \Ease\TWB4\Row();
+        $jobInfoRow = new \Ease\TWB5\Row();
         $jobInfoRow->addColumn(1, [_('Exitcode').'<br>', new ExitCode($job->getDataValue('exitcode'), ['style' => 'font-size: 2.0em; font-family: monospace;'])]);
         $jobInfoRow->addColumn(4, [_('Commandline').'<br>', htmlspecialchars((string) $job->getDataValue('command'), \ENT_QUOTES | \ENT_HTML5, 'UTF-8'), '<br>', htmlspecialchars((string) $job->getApplication()->getRecordName(), \ENT_QUOTES | \ENT_HTML5, 'UTF-8').' v.:'.htmlspecialchars((string) $job->getDataValue('app_version'), \ENT_QUOTES | \ENT_HTML5, 'UTF-8')]);
         $jobInfoRow->addColumn(2, [_('Scheduled').'<br>',
@@ -60,24 +60,24 @@ class JobInfo extends \Ease\Html\DivTag
             $userIcon = $isWebUser ? '👤' : '🖥️'; // Web user vs CLI/OS user
             $userBadgeClass = $isWebUser ? 'info' : 'secondary';
             $userLabel = $userIcon.' '.($launcher->getUserName() ?: $launcher->getUserLogin());
-            $launcherBadge = new \Ease\Html\ATag('user.php?id='.$launcher->getMyKey(), new \Ease\TWB4\Badge($userBadgeClass, $userLabel));
+            $launcherBadge = new \Ease\Html\ATag('user.php?id='.$launcher->getMyKey(), new \Ease\TWB5\Badge($userBadgeClass, $userLabel));
         } else {
             // Fallback for old records without user
-            $launcherBadge = new \Ease\TWB4\Badge('warning', '⏰ '._('Timer'));
+            $launcherBadge = new \Ease\TWB5\Badge('warning', '⏰ '._('Timer'));
         }
 
         $jobInfoRow->addColumn(1, [_('Launched by').'<br>', $launcherBadge]);
 
         parent::__construct($jobInfoRow, $properties);
 
-        $jobTabs = new \Ease\TWB4\Tabs();
+        $jobTabs = new \Ease\TWB5\Tabs();
 
         $jobTabs->addTab('🏁 '._('Job').' <span class="badge badge-primary">'.$job->getMyKey().'</span>', '');
 
         //        $scheduler = new \MultiFlexi\Scheduler();
         //        $scheduled = $scheduler->listingQuery()->where('job', $job->getMyKey())->fetch();
 
-        $envTabs = new \Ease\TWB4\Tabs();
+        $envTabs = new \Ease\TWB5\Tabs();
         $envTabs->addTab(_('Overview'), new EnvironmentView($job->getEnvironment()));
         $envTabs->addTab(_('export .env'), new JobDotEnv($job));
 

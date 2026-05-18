@@ -22,7 +22,7 @@ use Ease\Html\InputHiddenTag;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class SecureForm extends \Ease\TWB4\Form
+class SecureForm extends \Ease\TWB5\Form
 {
     /**
      * Create secure form with CSRF protection.

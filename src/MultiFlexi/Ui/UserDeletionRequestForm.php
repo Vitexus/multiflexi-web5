@@ -69,7 +69,7 @@ class UserDeletionRequestForm extends SecureForm
         $canRequest = UserDataEraser::canRequestDeletion($this->targetUser);
 
         if (!$canRequest['allowed']) {
-            $this->addItem(new \Ease\TWB4\Alert(
+            $this->addItem(new \Ease\TWB5\Alert(
                 _('Deletion Request Not Allowed'),
                 'danger',
                 $canRequest['reason'],
@@ -106,7 +106,7 @@ class UserDeletionRequestForm extends SecureForm
     /**
      * Create warning banner.
      */
-    private function createWarningBanner(): \Ease\TWB4\Alert
+    private function createWarningBanner(): \Ease\TWB5\Alert
     {
         $title = $this->isSelfDeletion ?
             _('⚠️ Account Deletion Request') :
@@ -116,17 +116,17 @@ class UserDeletionRequestForm extends SecureForm
             _('You are about to request deletion of your own account. This action cannot be undone and will result in the permanent loss of your data.') :
             _('You are about to request deletion of another user\'s account. This action requires administrator approval and cannot be undone.');
 
-        return new \Ease\TWB4\Alert($title, 'warning', $message);
+        return new \Ease\TWB5\Alert($title, 'warning', $message);
     }
 
     /**
      * Create user information section.
      */
-    private function createUserInfoSection(): \Ease\TWB4\Card
+    private function createUserInfoSection(): \Ease\TWB5\Card
     {
-        $card = new \Ease\TWB4\Card(_('User Information'));
+        $card = new \Ease\TWB5\Card(_('User Information'));
 
-        $userInfo = new \Ease\TWB4\Container();
+        $userInfo = new \Ease\TWB5\Container();
         $userInfo->addItem(new \Ease\Html\StrongTag(_('User Login: ')));
         $userInfo->addItem($this->targetUser->getDataValue('login'));
         $userInfo->addItem(new \Ease\Html\PTag());
@@ -150,12 +150,12 @@ class UserDeletionRequestForm extends SecureForm
     /**
      * Create deletion type selection section.
      */
-    private static function createDeletionTypeSection(): \Ease\TWB4\Card
+    private static function createDeletionTypeSection(): \Ease\TWB5\Card
     {
-        $card = new \Ease\TWB4\Card(_('Deletion Type'));
+        $card = new \Ease\TWB5\Card(_('Deletion Type'));
 
         // Soft deletion option
-        $softOption = new \Ease\TWB4\FormGroup();
+        $softOption = new \Ease\TWB5\FormGroup();
         $softOption->addItem(new \Ease\Html\InputRadioTag('deletion_type', 'soft', true));
         $softOption->addItem(' ');
         $softOption->addItem(new \Ease\Html\StrongTag(_('Soft Deletion (Recommended)')));
@@ -163,22 +163,22 @@ class UserDeletionRequestForm extends SecureForm
         $softOption->addItem(_('Account will be disabled and marked as deleted, but data will be retained for legal compliance. This can be processed immediately.'));
 
         // Hard deletion option (admin only)
-        $hardOption = new \Ease\TWB4\FormGroup();
+        $hardOption = new \Ease\TWB5\FormGroup();
         $hardOption->addItem(new \Ease\Html\InputRadioTag('deletion_type', 'hard', false, ['data-requires-approval' => 'true']));
         $hardOption->addItem(' ');
         $hardOption->addItem(new \Ease\Html\StrongTag(_('Hard Deletion')));
         $hardOption->addItem(' ');
-        $hardOption->addItem(new \Ease\TWB4\Badge('danger', _('Requires Admin Approval')));
+        $hardOption->addItem(new \Ease\TWB5\Badge('danger', _('Requires Admin Approval')));
         $hardOption->addItem(new \Ease\Html\PTag());
         $hardOption->addItem(_('Permanently removes all user data except what\'s required for legal compliance. Cannot be undone.'));
 
         // Anonymization option
-        $anonymizeOption = new \Ease\TWB4\FormGroup();
+        $anonymizeOption = new \Ease\TWB5\FormGroup();
         $anonymizeOption->addItem(new \Ease\Html\InputRadioTag('deletion_type', 'anonymize', false, ['data-requires-approval' => 'true']));
         $anonymizeOption->addItem(' ');
         $anonymizeOption->addItem(new \Ease\Html\StrongTag(_('Data Anonymization')));
         $anonymizeOption->addItem(' ');
-        $anonymizeOption->addItem(new \Ease\TWB4\Badge('warning', _('Requires Admin Approval')));
+        $anonymizeOption->addItem(new \Ease\TWB5\Badge('warning', _('Requires Admin Approval')));
         $anonymizeOption->addItem(new \Ease\Html\PTag());
         $anonymizeOption->addItem(_('Replaces personal data with anonymous values while preserving data structure. Account will be disabled.'));
 
@@ -192,11 +192,11 @@ class UserDeletionRequestForm extends SecureForm
     /**
      * Create reason section.
      */
-    private static function createReasonSection(): \Ease\TWB4\Card
+    private static function createReasonSection(): \Ease\TWB5\Card
     {
-        $card = new \Ease\TWB4\Card(_('Reason for Deletion'));
+        $card = new \Ease\TWB5\Card(_('Reason for Deletion'));
 
-        $reasonField = new \Ease\TWB4\FormGroup(_('Please explain why you are requesting this deletion:'));
+        $reasonField = new \Ease\TWB5\FormGroup(_('Please explain why you are requesting this deletion:'));
         $reasonTextarea = new \Ease\Html\TextareaTag('reason', '', [
             'class' => 'form-control',
             'rows' => 4,
@@ -212,9 +212,9 @@ class UserDeletionRequestForm extends SecureForm
     /**
      * Create legal information section.
      */
-    private static function createLegalInfoSection(): \Ease\TWB4\Card
+    private static function createLegalInfoSection(): \Ease\TWB5\Card
     {
-        $card = new \Ease\TWB4\Card(_('Legal Information'));
+        $card = new \Ease\TWB5\Card(_('Legal Information'));
 
         $legalInfo = new \Ease\Html\PTag();
         $legalInfo->addItem(_('This request is made under '));
@@ -237,25 +237,25 @@ class UserDeletionRequestForm extends SecureForm
     /**
      * Create confirmation section.
      */
-    private function createConfirmationSection(): \Ease\TWB4\Card
+    private function createConfirmationSection(): \Ease\TWB5\Card
     {
-        $card = new \Ease\TWB4\Card(_('Confirmation'));
+        $card = new \Ease\TWB5\Card(_('Confirmation'));
 
         // Understanding confirmation
-        $understandingCheck = new \Ease\TWB4\FormGroup();
+        $understandingCheck = new \Ease\TWB5\FormGroup();
         $understandingCheck->addItem(new \Ease\Html\InputCheckboxTag('confirm_understanding', '1', false, ['required' => 'required']));
         $understandingCheck->addItem(' ');
         $understandingCheck->addItem(_('I understand that this action cannot be easily undone and may result in permanent data loss'));
 
         // Legal basis confirmation
-        $legalCheck = new \Ease\TWB4\FormGroup();
+        $legalCheck = new \Ease\TWB5\FormGroup();
         $legalCheck->addItem(new \Ease\Html\InputCheckboxTag('confirm_legal_basis', '1', false, ['required' => 'required']));
         $legalCheck->addItem(' ');
         $legalCheck->addItem(_('I confirm that this request is made under my right to erasure as granted by GDPR Article 17'));
 
         // Self-deletion confirmation (only for self-deletion)
         if ($this->isSelfDeletion) {
-            $selfCheck = new \Ease\TWB4\FormGroup();
+            $selfCheck = new \Ease\TWB5\FormGroup();
             $selfCheck->addItem(new \Ease\Html\InputCheckboxTag('confirm_self_deletion', '1', false, ['required' => 'required']));
             $selfCheck->addItem(' ');
             $selfCheck->addItem(_('I confirm that I am requesting deletion of my own account'));
@@ -271,18 +271,18 @@ class UserDeletionRequestForm extends SecureForm
     /**
      * Create submit section.
      */
-    private function createSubmitSection(): \Ease\TWB4\Container
+    private function createSubmitSection(): \Ease\TWB5\Container
     {
-        $container = new \Ease\TWB4\Container();
+        $container = new \Ease\TWB5\Container();
 
-        $buttonGroup = new \Ease\TWB4\ButtonGroup();
+        $buttonGroup = new \Ease\TWB5\ButtonGroup();
 
-        $submitButton = new \Ease\TWB4\SubmitButton(_('Submit Deletion Request'), 'danger', [
+        $submitButton = new \Ease\TWB5\SubmitButton(_('Submit Deletion Request'), 'danger', [
             'onclick' => 'return confirmDeletionRequest();',
         ]);
         $submitButton->addTagClass('btn-lg');
 
-        $cancelButton = new \Ease\TWB4\LinkButton('user.php?id='.$this->targetUser->getId(), _('Cancel'), 'secondary');
+        $cancelButton = new \Ease\TWB5\LinkButton('user.php?id='.$this->targetUser->getId(), _('Cancel'), 'secondary');
         $cancelButton->addTagClass('btn-lg');
 
         $buttonGroup->addItem($cancelButton);

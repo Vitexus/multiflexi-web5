@@ -153,7 +153,7 @@ class SleepTest extends TestCase
         $this->assertInstanceOf(\Ease\Embedable::class, $inputs);
 
         // The input should be a FormGroup
-        $this->assertInstanceOf(\Ease\TWB4\FormGroup::class, $inputs);
+        $this->assertInstanceOf(\Ease\TWB5\FormGroup::class, $inputs);
 
         // For Sleep action, we expect the inputs to contain a form field for number of seconds
     }

@@ -17,8 +17,8 @@ namespace MultiFlexi\Ui;
 
 use Ease\Html\ATag;
 use Ease\Html\DivTag;
-use Ease\TWB4\Table;
-use Ease\TWB4\Widgets\Toggle;
+use Ease\TWB5\Table;
+use Ease\TWB5\Widgets\Toggle;
 use MultiFlexi\Application;
 use MultiFlexi\Company;
 use MultiFlexi\CompanyApp;
@@ -58,7 +58,7 @@ class AppAssignment extends DivTag
 
         $csrfToken = $GLOBALS['csrfProtection']->generateToken();
 
-        $card = new \Ease\TWB4\Card(
+        $card = new \Ease\TWB5\Card(
             new \Ease\Html\DivTag([
                 new \Ease\Html\H4Tag(_('Company Assignments'), ['class' => 'card-title mb-0']),
                 new \Ease\Html\SmallTag(_('Enable or disable this application for specific companies'), ['class' => 'text-muted']),

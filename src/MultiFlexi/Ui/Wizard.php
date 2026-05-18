@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class Wizard extends \Ease\TWB4\Panel
+class Wizard extends \Ease\TWB5\Panel
 {
     public $step = 0;
 

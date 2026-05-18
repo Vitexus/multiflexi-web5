@@ -24,7 +24,7 @@ namespace MultiFlexi\Ui;
  */
 class ExecutorSelect extends \Ease\Html\SelectTag
 {
-    use \Ease\TWB4\Widgets\Selectizer;
+    use \Ease\TWB5\Widgets\Selectizer;
     public array $executors = [];
     protected array $executorData = [];
 

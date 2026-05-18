@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace MultiFlexi\Ui;
 
-use Ease\TWB4\Part;
+use Ease\TWB5\Part;
 use MultiFlexi\Application;
 use MultiFlexi\Company;
 use MultiFlexi\RunTemplate;
@@ -48,7 +48,7 @@ class ServicesForCompanyForm extends SecureForm
         $assigned = $glue->getActiveRunTemplatesForCompany($companyID)->fetchAll('app_id');
         parent::__construct($tagProperties);
         $jobber = new \MultiFlexi\Job();
-        $appTabs = new \Ease\TWB4\Tabs();
+        $appTabs = new \Ease\TWB5\Tabs();
 
         foreach ($platformApps as $appData) {
             $apper->setData($appData);

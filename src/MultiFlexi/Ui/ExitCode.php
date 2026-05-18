@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class ExitCode extends \Ease\TWB4\Badge
+class ExitCode extends \Ease\TWB5\Badge
 {
     public function __construct($exitcode, $properties = [])
     {

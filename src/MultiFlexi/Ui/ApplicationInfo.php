@@ -22,7 +22,7 @@ declare(strict_types=1);
 
 namespace MultiFlexi\Ui;
 
-use Ease\TWB4\Panel;
+use Ease\TWB5\Panel;
 use MultiFlexi\Application;
 
 /**
@@ -38,7 +38,7 @@ class ApplicationInfo extends Panel
     {
         $body = new \Ease\Html\DivTag(null, ['class' => 'p-4']);
 
-        $row = new \Ease\TWB4\Row();
+        $row = new \Ease\TWB5\Row();
         $row->addColumn(4, new \Ease\Html\DivTag(new AppLogo($application, ['class' => 'img-fluid rounded shadow-sm border p-2']), ['class' => 'text-center mb-4']));
 
         $infoCol = $row->addColumn(8, $this->metadataTable($application));
@@ -71,7 +71,7 @@ class ApplicationInfo extends Panel
         $metadata->addItem(new \Ease\Html\H3Tag($name, ['class' => 'border-bottom pb-2 mb-3']));
         $metadata->addItem(new \Ease\Html\PTag($description, ['class' => 'lead']));
 
-        $details = new \Ease\TWB4\Row();
+        $details = new \Ease\TWB5\Row();
 
         $col1 = $details->addColumn(6);
         $col1->addItem(self::infoRow('🏠', _('Homepage'), new \Ease\Html\ATag($application->getDataValue('homepage'), $application->getDataValue('homepage'))));

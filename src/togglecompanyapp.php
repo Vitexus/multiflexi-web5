@@ -19,9 +19,9 @@ require_once './init.php';
 
 WebPage::singleton()->onlyForLogged();
 
-$appId = \Ease\TWB4\WebPage::getRequestValue('app_id', 'int');
-$companyId = \Ease\TWB4\WebPage::getRequestValue('company_id', 'int');
-$state = \Ease\TWB4\WebPage::getRequestValue('state') === 'true';
+$appId = \Ease\TWB5\WebPage::getRequestValue('app_id', 'int');
+$companyId = \Ease\TWB5\WebPage::getRequestValue('company_id', 'int');
+$state = \Ease\TWB5\WebPage::getRequestValue('state') === 'true';
 
 $result = 400;
 

@@ -43,7 +43,7 @@ class PageBottom extends \Ease\Html\FooterTag
         //        $this->addItem(new \Ease\Html\WidgetsBrowsingHistory());
         //        }
         $this->addItem('<hr>');
-        $footrow = new \Ease\TWB4\Row();
+        $footrow = new \Ease\TWB5\Row();
 
         $coreVersion = \Composer\InstalledVersions::isInstalled('vitexsoftware/multiflexi-core')
             ? \Composer\InstalledVersions::getPrettyVersion('vitexsoftware/multiflexi-core')
@@ -63,7 +63,7 @@ class PageBottom extends \Ease\Html\FooterTag
             $lnks->addItem($this->apiLinks());
         }
 
-        $this->addItem(new \Ease\TWB4\Container($footrow));
+        $this->addItem(new \Ease\TWB5\Container($footrow));
         parent::finalize();
     }
 

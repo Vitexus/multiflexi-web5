@@ -36,7 +36,7 @@ class Sleep extends \MultiFlexi\Action\Reschedule
      */
     public function inputs(string $prefix): \Ease\Embedable
     {
-        return new \Ease\TWB4\FormGroup(_('Number of seconds'), new \Ease\Html\InputTextTag($prefix.'[Sleep][seconds]'), '60', _('Number of Seconds to wait'));
+        return new \Ease\TWB5\FormGroup(_('Number of seconds'), new \Ease\Html\InputTextTag($prefix.'[Sleep][seconds]'), '60', _('Number of Seconds to wait'));
     }
 
     /**
@@ -44,6 +44,6 @@ class Sleep extends \MultiFlexi\Action\Reschedule
      */
     public function configForm(): \Ease\Embedable
     {
-        return new \Ease\TWB4\Badge('info', _('No additional configuration required'));
+        return new \Ease\TWB5\Badge('info', _('No additional configuration required'));
     }
 }

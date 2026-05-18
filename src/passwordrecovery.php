@@ -69,7 +69,7 @@ if (empty($emailTo)) {
 
 WebPage::singleton()->addItem(new PageTop(_('Lost password recovery')));
 
-$pageRow = new \Ease\TWB4\Row();
+$pageRow = new \Ease\TWB5\Row();
 
 $columnI = $pageRow->addColumn('4');
 $columnII = $pageRow->addColumn('4');
@@ -78,21 +78,21 @@ $columnIII = $pageRow->addColumn('4');
 WebPage::singleton()->addItem($pageRow);
 
 if (!$success) {
-    $columnIII->addItem(new \Ease\TWB4\Label('info', _('Tip')));
+    $columnIII->addItem(new \Ease\TWB5\Label('info', _('Tip')));
 
-    $columnIII->addItem(new \Ease\TWB4\Well(_('Forgot your password? Enter your e-mail address you entered during the registration and we will send you a new one.')));
+    $columnIII->addItem(new \Ease\TWB5\Well(_('Forgot your password? Enter your e-mail address you entered during the registration and we will send you a new one.')));
 
-    $titlerow = new \Ease\TWB4\Row();
+    $titlerow = new \Ease\TWB5\Row();
     $titlerow->addColumn(4, new \Ease\Html\ImgTag('images/password.png'));
     $titlerow->addColumn(8, new \Ease\Html\H3Tag(_('Password Recovery')));
 
-    $loginPanel = new \Ease\TWB4\Panel(
-        new \Ease\TWB4\Container($titlerow),
+    $loginPanel = new \Ease\TWB5\Panel(
+        new \Ease\TWB5\Container($titlerow),
         'success',
         null,
-        new \Ease\TWB4\SubmitButton(_('Sent New Password'), 'success'),
+        new \Ease\TWB5\SubmitButton(_('Sent New Password'), 'success'),
     );
-    $loginPanel->addItem(new \Ease\TWB4\FormGroup(
+    $loginPanel->addItem(new \Ease\TWB5\FormGroup(
         _('Email'),
         new \Ease\Html\InputTextTag(
             'Email',
@@ -109,7 +109,7 @@ if (!$success) {
         $mailForm->fillUp($_POST);
     }
 } else {
-    $columnII->addItem(new \Ease\TWB4\LinkButton(
+    $columnII->addItem(new \Ease\TWB5\LinkButton(
         'login.php',
         _('Continue'),
     ));

@@ -31,36 +31,36 @@ class CredentialProtoTypeForm extends SecureForm
         $this->prototype = $prototype;
 
         // Main prototype information
-        $prototypeRow1 = new \Ease\TWB4\Row(null, ['class' => 'border border-secondary rounded p-3']);
+        $prototypeRow1 = new \Ease\TWB5\Row(null, ['class' => 'border border-secondary rounded p-3']);
         $prototypeRow1->addItem(new \Ease\Html\H4Tag(_('Prototype Information')));
         $prototypeRow1->addColumn(6, [
-            new \Ease\TWB4\FormGroup(_('Code'), new \Ease\Html\InputTextTag('code', $prototype->getDataValue('code'), ['required'])),
-            new \Ease\TWB4\FormGroup(_('Prototype Name'), new \Ease\Html\InputTextTag('name', $prototype->getDataValue('name'), ['required'])),
-            new \Ease\TWB4\FormGroup(_('Version'), new \Ease\Html\InputTextTag('version', $prototype->getDataValue('version'))),
+            new \Ease\TWB5\FormGroup(_('Code'), new \Ease\Html\InputTextTag('code', $prototype->getDataValue('code'), ['required'])),
+            new \Ease\TWB5\FormGroup(_('Prototype Name'), new \Ease\Html\InputTextTag('name', $prototype->getDataValue('name'), ['required'])),
+            new \Ease\TWB5\FormGroup(_('Version'), new \Ease\Html\InputTextTag('version', $prototype->getDataValue('version'))),
         ]);
 
         $prototypeRow1->addColumn(6, [
-            new \Ease\TWB4\FormGroup(_('URL'), new \Ease\Html\InputTextTag('url', $prototype->getDataValue('url'))),
-            new \Ease\TWB4\FormGroup(_('Logo'), new \Ease\Html\InputTextTag('logo', $prototype->getDataValue('logo'))),
-            new \Ease\TWB4\FormGroup(_('UUID'), new \Ease\Html\InputTextTag('uuid', $prototype->getDataValue('uuid'), ['readonly'])),
+            new \Ease\TWB5\FormGroup(_('URL'), new \Ease\Html\InputTextTag('url', $prototype->getDataValue('url'))),
+            new \Ease\TWB5\FormGroup(_('Logo'), new \Ease\Html\InputTextTag('logo', $prototype->getDataValue('logo'))),
+            new \Ease\TWB5\FormGroup(_('UUID'), new \Ease\Html\InputTextTag('uuid', $prototype->getDataValue('uuid'), ['readonly'])),
         ]);
 
         // Description section
-        $prototypeRow2 = new \Ease\TWB4\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
+        $prototypeRow2 = new \Ease\TWB5\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
         $prototypeRow2->addItem(new \Ease\Html\H4Tag(_('Description')));
         $prototypeRow2->addColumn(12, [
-            new \Ease\TWB4\FormGroup(_('Description'), new \Ease\Html\TextareaTag('description', $prototype->getDataValue('description'), ['rows' => 4])),
+            new \Ease\TWB5\FormGroup(_('Description'), new \Ease\Html\TextareaTag('description', $prototype->getDataValue('description'), ['rows' => 4])),
         ]);
 
         // Metadata section
         if ($prototype->getMyKey()) {
-            $metadataRow = new \Ease\TWB4\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
+            $metadataRow = new \Ease\TWB5\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
             $metadataRow->addItem(new \Ease\Html\H4Tag(_('Metadata')));
             $metadataRow->addColumn(6, [
-                new \Ease\TWB4\FormGroup(_('Created'), new \Ease\Html\InputTextTag('', $prototype->getDataValue('created_at'), ['readonly'])),
+                new \Ease\TWB5\FormGroup(_('Created'), new \Ease\Html\InputTextTag('', $prototype->getDataValue('created_at'), ['readonly'])),
             ]);
             $metadataRow->addColumn(6, [
-                new \Ease\TWB4\FormGroup(_('Updated'), new \Ease\Html\InputTextTag('', $prototype->getDataValue('updated_at'), ['readonly'])),
+                new \Ease\TWB5\FormGroup(_('Updated'), new \Ease\Html\InputTextTag('', $prototype->getDataValue('updated_at'), ['readonly'])),
             ]);
         }
 
@@ -160,7 +160,7 @@ class CredentialProtoTypeForm extends SecureForm
 
             // Always add close button for non-current languages
             if ($langCode !== $currentLang) {
-                $langHeader->addItem(new \Ease\TWB4\LinkButton('#', '×', 'outline-secondary btn-sm', [
+                $langHeader->addItem(new \Ease\TWB5\LinkButton('#', '×', 'outline-secondary btn-sm', [
                     'onclick' => 'hideLanguage(\''.$langCode.'\'); return false;',
                     'title' => _('Hide this language'),
                 ]));
@@ -171,13 +171,13 @@ class CredentialProtoTypeForm extends SecureForm
 
             $langDiv->addItem($langHeader);
 
-            $langRow = new \Ease\TWB4\Row();
+            $langRow = new \Ease\TWB5\Row();
             $langRow->addColumn(6, [
-                new \Ease\TWB4\FormGroup(_('Name'), new \Ease\Html\InputTextTag('localized[name]['.$langCode.']', '', ['id' => 'name_'.$langCode])),
+                new \Ease\TWB5\FormGroup(_('Name'), new \Ease\Html\InputTextTag('localized[name]['.$langCode.']', '', ['id' => 'name_'.$langCode])),
             ]);
 
             $langRow->addColumn(6, [
-                new \Ease\TWB4\FormGroup(_('Description'), new \Ease\Html\TextareaTag('localized[description]['.$langCode.']', '', ['rows' => 2, 'id' => 'description_'.$langCode])),
+                new \Ease\TWB5\FormGroup(_('Description'), new \Ease\Html\TextareaTag('localized[description]['.$langCode.']', '', ['rows' => 2, 'id' => 'description_'.$langCode])),
             ]);
 
             $langDiv->addItem($langRow);
@@ -299,12 +299,12 @@ JS;
             if (!empty($existingFields)) {
                 foreach ($existingFields as $field) {
                     // Reduce spacing to keep form compact and avoid visible gaps
-                    $fieldRow = new \Ease\TWB4\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
+                    $fieldRow = new \Ease\TWB5\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
                     $fieldRow->addItem(new \Ease\Html\H5Tag(_('Field').': '.$field['keyword']));
 
                     $fieldRow->addColumn(4, [
-                        new \Ease\TWB4\FormGroup(_('Field Keyword'), new \Ease\Html\InputTextTag($field['id'].'[keyword]', $field['keyword'])),
-                        new \Ease\TWB4\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag($field['id'].'[name]', $field['name'])),
+                        new \Ease\TWB5\FormGroup(_('Field Keyword'), new \Ease\Html\InputTextTag($field['id'].'[keyword]', $field['keyword'])),
+                        new \Ease\TWB5\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag($field['id'].'[name]', $field['name'])),
                     ]);
 
                     $fieldTypeOptions = [
@@ -318,14 +318,14 @@ JS;
                     ];
 
                     $fieldRow->addColumn(4, [
-                        new \Ease\TWB4\FormGroup(_('Field Type'), new \Ease\Html\SelectTag($field['id'].'[type]', $fieldTypeOptions, $field['type'])),
-                        new \Ease\TWB4\FormGroup(_('Default Value'), new \Ease\Html\InputTextTag($field['id'].'[default_value]', $field['default_value'])),
+                        new \Ease\TWB5\FormGroup(_('Field Type'), new \Ease\Html\SelectTag($field['id'].'[type]', $fieldTypeOptions, $field['type'])),
+                        new \Ease\TWB5\FormGroup(_('Default Value'), new \Ease\Html\InputTextTag($field['id'].'[default_value]', $field['default_value'])),
                     ]);
 
                     $fieldRow->addColumn(4, [
-                        new \Ease\TWB4\FormGroup(_('Required'), new \Ease\Html\InputTag($field['id'].'[required]', '1', ['type' => 'checkbox', 'checked' => (bool) $field['required']])),
-                        new \Ease\TWB4\FormGroup(_('Description'), new \Ease\Html\TextareaTag($field['id'].'[description]', $field['description'], ['rows' => 2])),
-                        new \Ease\TWB4\FormGroup(_('Hint'), new \Ease\Html\InputTextTag($field['id'].'[hint]', $field['hint'])),
+                        new \Ease\TWB5\FormGroup(_('Required'), new \Ease\Html\InputTag($field['id'].'[required]', '1', ['type' => 'checkbox', 'checked' => (bool) $field['required']])),
+                        new \Ease\TWB5\FormGroup(_('Description'), new \Ease\Html\TextareaTag($field['id'].'[description]', $field['description'], ['rows' => 2])),
+                        new \Ease\TWB5\FormGroup(_('Hint'), new \Ease\Html\InputTextTag($field['id'].'[hint]', $field['hint'])),
                     ]);
 
                     // Add localization section for existing field
@@ -355,19 +355,19 @@ JS;
 
                         $fieldLangHeader = new \Ease\Html\DivTag(null, ['class' => 'd-flex justify-content-between align-items-center mb-2']);
                         $fieldLangHeader->addItem(new \Ease\Html\H5Tag($langName.' ('.$langCode.')', ['class' => 'mb-0 h6']));
-                        $fieldLangHeader->addItem(new \Ease\TWB4\LinkButton('#', '×', 'outline-secondary btn-sm', [
+                        $fieldLangHeader->addItem(new \Ease\TWB5\LinkButton('#', '×', 'outline-secondary btn-sm', [
                             'onclick' => 'hideFieldLanguage('.$field['id'].', \''.$langCode.'\'); return false;',
                             'title' => _('Hide this language'),
                         ]));
                         $fieldLangDiv->addItem($fieldLangHeader);
 
-                        $fieldLangRow = new \Ease\TWB4\Row();
+                        $fieldLangRow = new \Ease\TWB5\Row();
                         $fieldLangRow->addColumn(6, [
-                            new \Ease\TWB4\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag($field['id'].'[localized_name]['.$langCode.']', '', ['id' => 'field_'.$field['id'].'_name_'.$langCode])),
+                            new \Ease\TWB5\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag($field['id'].'[localized_name]['.$langCode.']', '', ['id' => 'field_'.$field['id'].'_name_'.$langCode])),
                         ]);
 
                         $fieldLangRow->addColumn(6, [
-                            new \Ease\TWB4\FormGroup(_('Field Description'), new \Ease\Html\TextareaTag($field['id'].'[localized_description]['.$langCode.']', '', ['rows' => 2, 'id' => 'field_'.$field['id'].'_description_'.$langCode])),
+                            new \Ease\TWB5\FormGroup(_('Field Description'), new \Ease\Html\TextareaTag($field['id'].'[localized_description]['.$langCode.']', '', ['rows' => 2, 'id' => 'field_'.$field['id'].'_description_'.$langCode])),
                         ]);
 
                         $fieldLangDiv->addItem($fieldLangRow);
@@ -378,7 +378,7 @@ JS;
                     $fieldRow->addColumn(12, $fieldLocalizationDiv);
 
                     // Add delete button
-                    $deleteButton = new \Ease\TWB4\LinkButton(
+                    $deleteButton = new \Ease\TWB5\LinkButton(
                         'credentialprototype.php?id='.$prototype->getMyKey().'&removefield='.$field['id'],
                         '🗑️ '._('Delete Field'),
                         'danger btn-sm',
@@ -392,12 +392,12 @@ JS;
         }
 
         // Add new field form (available for both new and existing prototypes)
-        $newFieldRow = new \Ease\TWB4\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
+        $newFieldRow = new \Ease\TWB5\Row(null, ['class' => 'border border-secondary rounded p-3 mt-3']);
         $newFieldRow->addItem(new \Ease\Html\H4Tag(_('Add New Field')));
 
         $newFieldRow->addColumn(4, [
-            new \Ease\TWB4\FormGroup(_('Field Keyword'), new \Ease\Html\InputTextTag('new_field[keyword]', '')),
-            new \Ease\TWB4\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag('new_field[name]', '')),
+            new \Ease\TWB5\FormGroup(_('Field Keyword'), new \Ease\Html\InputTextTag('new_field[keyword]', '')),
+            new \Ease\TWB5\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag('new_field[name]', '')),
         ]);
 
         $fieldTypeOptions = [
@@ -411,14 +411,14 @@ JS;
         ];
 
         $newFieldRow->addColumn(4, [
-            new \Ease\TWB4\FormGroup(_('Field Type'), new \Ease\Html\SelectTag('new_field[type]', $fieldTypeOptions)),
-            new \Ease\TWB4\FormGroup(_('Default Value'), new \Ease\Html\InputTextTag('new_field[default_value]', '')),
+            new \Ease\TWB5\FormGroup(_('Field Type'), new \Ease\Html\SelectTag('new_field[type]', $fieldTypeOptions)),
+            new \Ease\TWB5\FormGroup(_('Default Value'), new \Ease\Html\InputTextTag('new_field[default_value]', '')),
         ]);
 
         $newFieldRow->addColumn(4, [
-            new \Ease\TWB4\FormGroup(_('Required'), new \Ease\Html\InputTag('new_field[required]', '1', ['type' => 'checkbox'])),
-            new \Ease\TWB4\FormGroup(_('Description'), new \Ease\Html\TextareaTag('new_field[description]', '', ['rows' => 2])),
-            new \Ease\TWB4\FormGroup(_('Hint'), new \Ease\Html\InputTextTag('new_field[hint]', '')),
+            new \Ease\TWB5\FormGroup(_('Required'), new \Ease\Html\InputTag('new_field[required]', '1', ['type' => 'checkbox'])),
+            new \Ease\TWB5\FormGroup(_('Description'), new \Ease\Html\TextareaTag('new_field[description]', '', ['rows' => 2])),
+            new \Ease\TWB5\FormGroup(_('Hint'), new \Ease\Html\InputTextTag('new_field[hint]', '')),
         ]);
 
         $formContents[] = $newFieldRow;
@@ -451,19 +451,19 @@ JS;
 
             $fieldLangHeader = new \Ease\Html\DivTag(null, ['class' => 'd-flex justify-content-between align-items-center mb-2']);
             $fieldLangHeader->addItem(new \Ease\Html\H5Tag($langName.' ('.$langCode.')', ['class' => 'mb-0 h6']));
-            $fieldLangHeader->addItem(new \Ease\TWB4\LinkButton('#', '×', 'outline-secondary btn-sm', [
+            $fieldLangHeader->addItem(new \Ease\TWB5\LinkButton('#', '×', 'outline-secondary btn-sm', [
                 'onclick' => 'hideNewFieldLanguage(\''.$langCode.'\'); return false;',
                 'title' => _('Hide this language'),
             ]));
             $fieldLangDiv->addItem($fieldLangHeader);
 
-            $fieldLangRow = new \Ease\TWB4\Row();
+            $fieldLangRow = new \Ease\TWB5\Row();
             $fieldLangRow->addColumn(6, [
-                new \Ease\TWB4\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag('new_field[localized_name]['.$langCode.']', '', ['id' => 'new_field_name_'.$langCode])),
+                new \Ease\TWB5\FormGroup(_('Field Name'), new \Ease\Html\InputTextTag('new_field[localized_name]['.$langCode.']', '', ['id' => 'new_field_name_'.$langCode])),
             ]);
 
             $fieldLangRow->addColumn(6, [
-                new \Ease\TWB4\FormGroup(_('Field Description'), new \Ease\Html\TextareaTag('new_field[localized_description]['.$langCode.']', '', ['rows' => 2, 'id' => 'new_field_description_'.$langCode])),
+                new \Ease\TWB5\FormGroup(_('Field Description'), new \Ease\Html\TextareaTag('new_field[localized_description]['.$langCode.']', '', ['rows' => 2, 'id' => 'new_field_description_'.$langCode])),
             ]);
 
             $fieldLangDiv->addItem($fieldLangRow);
@@ -478,16 +478,16 @@ JS;
         // Add CSS for hidden utility class
         \Ease\WebPage::singleton()->addCSS('.hidden{display:none !important;} .language-section{margin-bottom:0;} .field-language-section{margin-bottom:10px;}');
 
-        $submitRow = new \Ease\TWB4\Row();
+        $submitRow = new \Ease\TWB5\Row();
 
         if (null === $prototype->getMyKey()) {
-            $submitRow->addColumn(6, new \Ease\TWB4\SubmitButton(_('Create Prototype'), 'success btn-lg btn-block', ['name' => 'create', 'title' => _('Create new credential prototype'), 'id' => 'createprototypebutton']));
-            $submitRow->addColumn(6, new \Ease\TWB4\LinkButton('credentialprototypes.php', _('Cancel'), 'secondary btn-lg btn-block', ['title' => _('Cancel creating new prototype'), 'id' => 'cancelprototypebutton']));
+            $submitRow->addColumn(6, new \Ease\TWB5\SubmitButton(_('Create Prototype'), 'success btn-lg btn-block', ['name' => 'create', 'title' => _('Create new credential prototype'), 'id' => 'createprototypebutton']));
+            $submitRow->addColumn(6, new \Ease\TWB5\LinkButton('credentialprototypes.php', _('Cancel'), 'secondary btn-lg btn-block', ['title' => _('Cancel creating new prototype'), 'id' => 'cancelprototypebutton']));
         } else {
-            $submitRow->addColumn(3, new \Ease\TWB4\SubmitButton(_('Save'), 'success btn-lg btn-block', ['name' => 'save']));
-            $submitRow->addColumn(3, new \Ease\TWB4\LinkButton('credentialprototype.php', _('New Prototype'), 'info btn-lg btn-block'));
-            $submitRow->addColumn(3, new \Ease\TWB4\LinkButton('credentialprototypes.php', _('Prototype List'), 'warning btn-lg btn-block'));
-            $submitRow->addColumn(3, new \Ease\TWB4\LinkButton(
+            $submitRow->addColumn(3, new \Ease\TWB5\SubmitButton(_('Save'), 'success btn-lg btn-block', ['name' => 'save']));
+            $submitRow->addColumn(3, new \Ease\TWB5\LinkButton('credentialprototype.php', _('New Prototype'), 'info btn-lg btn-block'));
+            $submitRow->addColumn(3, new \Ease\TWB5\LinkButton('credentialprototypes.php', _('Prototype List'), 'warning btn-lg btn-block'));
+            $submitRow->addColumn(3, new \Ease\TWB5\LinkButton(
                 'credentialprototype.php?delete='.$prototype->getMyKey(),
                 _('Delete'),
                 'danger btn-lg btn-block',

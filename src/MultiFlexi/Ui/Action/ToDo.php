@@ -51,7 +51,7 @@ class ToDo extends \MultiFlexi\Action\ToDo
         $userId = $cnf->getModuleConfig('ToDo', 'user_id', $prefix, $this->runtemplate)->fetchAll();
 
         // Office365 Credential Selection
-        $container->addItem(new \Ease\TWB4\FormGroup(
+        $container->addItem(new \Ease\TWB5\FormGroup(
             _('Office365 Credential'),
             new CredentialSelect($prefix.'[ToDo][credential]', $companyId, 'Office365'),
             '',
@@ -75,19 +75,19 @@ class ToDo extends \MultiFlexi\Action\ToDo
 
                 if ($fullDomain !== $tenant) {
                     // SharePoint tenant name detected - suggest the full domain
-                    $container->addItem(new \Ease\TWB4\Alert(
+                    $container->addItem(new \Ease\TWB5\Alert(
                         'warning',
                         sprintf(_('SharePoint tenant "%s" detected. For Office365 authentication, please use the full domain: "%s"'), $tenant, $fullDomain),
                     ));
                 } else {
                     // Invalid format
-                    $container->addItem(new \Ease\TWB4\Alert(
+                    $container->addItem(new \Ease\TWB5\Alert(
                         'danger',
                         sprintf(_('Invalid Office365 Tenant identifier: "%s". Please use a valid tenant ID (GUID format like "8bc80782-70b2-4c64-a00c-2ea30b7d67d5") or domain name (like "contoso.onmicrosoft.com").'), $tenant),
                     ));
                 }
 
-                $container->addItem(new \Ease\TWB4\LinkButton(
+                $container->addItem(new \Ease\TWB5\LinkButton(
                     'credential.php?company_id='.$companyId.'&class=Office365&id='.$credentialEngine->getMyKey(),
                     _('Fix Office365 Credential'),
                     'warning',
@@ -108,11 +108,11 @@ class ToDo extends \MultiFlexi\Action\ToDo
             $isUsernamePasswordAuth = !empty($username) && !empty($password);
 
             if (!$isClientCredentialsAuth && !$isUsernamePasswordAuth) {
-                $container->addItem(new \Ease\TWB4\Alert(
+                $container->addItem(new \Ease\TWB5\Alert(
                     'danger',
                     _('Invalid authentication configuration. Please provide either Username/Password OR Client ID/Client Secret.'),
                 ));
-                $container->addItem(new \Ease\TWB4\LinkButton(
+                $container->addItem(new \Ease\TWB5\LinkButton(
                     'credential.php?company_id='.$companyId.'&class=Office365&id='.$credentialEngine->getMyKey(),
                     _('Fix Office365 Credential'),
                     'danger',
@@ -124,11 +124,11 @@ class ToDo extends \MultiFlexi\Action\ToDo
             if ($isClientCredentialsAuth) {
                 // Validate client secret format
                 if (self::isClientSecretId($clientSecret)) {
-                    $container->addItem(new \Ease\TWB4\Alert(
+                    $container->addItem(new \Ease\TWB5\Alert(
                         'danger',
                         _('Invalid client secret detected. You are using a Client Secret ID (GUID format) instead of the Client Secret Value. Please go to Azure Portal → App registrations → Your app → Certificates & secrets, and copy the actual secret VALUE (not the ID).'),
                     ));
-                    $container->addItem(new \Ease\TWB4\LinkButton(
+                    $container->addItem(new \Ease\TWB5\LinkButton(
                         'credential.php?company_id='.$companyId.'&class=Office365&id='.$credentialEngine->getMyKey(),
                         _('Fix Client Secret'),
                         'danger',
@@ -139,13 +139,13 @@ class ToDo extends \MultiFlexi\Action\ToDo
 
                 // For client credentials, we need a specific user ID
                 if (empty($userId)) {
-                    $container->addItem(new \Ease\TWB4\Alert(
+                    $container->addItem(new \Ease\TWB5\Alert(
                         'warning',
                         _('For Client ID/Secret authentication, you need to provide OFFICE365_USER_ID. This should be the Azure AD User ID (GUID format) of the user whose ToDo lists you want to access.'),
                     ));
 
                     // Add field for entering User ID
-                    $container->addItem(new \Ease\TWB4\FormGroup(
+                    $container->addItem(new \Ease\TWB5\FormGroup(
                         _('Office365 User ID'),
                         new \Ease\Html\InputTextTag($prefix.'[ToDo][user_id]', '', [
                             'class' => 'form-control',
@@ -157,7 +157,7 @@ class ToDo extends \MultiFlexi\Action\ToDo
                         _('Azure AD User ID (GUID format) for the user whose ToDo lists you want to access. Required for Client ID/Secret authentication.'),
                     ));
 
-                    $container->addItem(new \Ease\TWB4\LinkButton(
+                    $container->addItem(new \Ease\TWB5\LinkButton(
                         'credential.php?company_id='.$companyId.'&class=Office365&id='.$credentialEngine->getMyKey(),
                         _('Edit Credential'),
                         'warning',
@@ -171,12 +171,12 @@ class ToDo extends \MultiFlexi\Action\ToDo
 
             // Show authentication method info
             if ($isClientCredentialsAuth) {
-                $container->addItem(new \Ease\TWB4\Alert(
+                $container->addItem(new \Ease\TWB5\Alert(
                     'info',
                     _('Using Client ID/Secret authentication (Application permissions). Accessing ToDo lists for user: ').$userId[0]['value'],
                 ));
             } elseif ($isUsernamePasswordAuth) {
-                $container->addItem(new \Ease\TWB4\Alert(
+                $container->addItem(new \Ease\TWB5\Alert(
                     'info',
                     _('Using Username/Password authentication (Delegated permissions). Accessing ToDo lists for: ').$username,
                 ));
@@ -195,7 +195,7 @@ class ToDo extends \MultiFlexi\Action\ToDo
                 $listOptions = ['' => _('No ToDo lists found or authentication failed')];
             }
 
-            $container->addItem(new \Ease\TWB4\FormGroup(
+            $container->addItem(new \Ease\TWB5\FormGroup(
                 _('ToDo List'),
                 new \Ease\Html\SelectTag($prefix.'[ToDo][list]', $listOptions, '', ['class' => 'form-control', 'id' => 'todo-list-select']),
                 '',
@@ -203,7 +203,7 @@ class ToDo extends \MultiFlexi\Action\ToDo
             ));
 
             // Task Priority Selection
-            $container->addItem(new \Ease\TWB4\FormGroup(
+            $container->addItem(new \Ease\TWB5\FormGroup(
                 _('Default Task Priority'),
                 new \Ease\Html\SelectTag($prefix.'[ToDo][priority]', [
                     'low' => _('Low'),
@@ -215,7 +215,7 @@ class ToDo extends \MultiFlexi\Action\ToDo
             ));
 
             // Task Subject Template
-            $container->addItem(new \Ease\TWB4\FormGroup(
+            $container->addItem(new \Ease\TWB5\FormGroup(
                 _('Task Subject Template'),
                 new \Ease\Html\InputTextTag(
                     $prefix.'[ToDo][subject_template]',
@@ -227,7 +227,7 @@ class ToDo extends \MultiFlexi\Action\ToDo
             ));
 
             // Task Body Template
-            $container->addItem(new \Ease\TWB4\FormGroup(
+            $container->addItem(new \Ease\TWB5\FormGroup(
                 _('Task Body Template'),
                 new \Ease\Html\TextareaTag(
                     $prefix.'[ToDo][body_template]',
@@ -240,11 +240,11 @@ class ToDo extends \MultiFlexi\Action\ToDo
             ));
         } else {
             // No credentials available - show create button
-            $container->addItem(new \Ease\TWB4\Alert(
+            $container->addItem(new \Ease\TWB5\Alert(
                 'warning',
                 _('No Office365 credentials found. Please create one first.'),
             ));
-            $container->addItem(new \Ease\TWB4\LinkButton(
+            $container->addItem(new \Ease\TWB5\LinkButton(
                 'credential.php?company_id='.$companyId.'&class=Office365',
                 _('Create Office365 Credential'),
                 'primary',

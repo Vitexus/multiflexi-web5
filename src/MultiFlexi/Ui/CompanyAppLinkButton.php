@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class CompanyAppLinkButton extends \Ease\TWB4\LinkButton
+class CompanyAppLinkButton extends \Ease\TWB5\LinkButton
 {
     public function __construct(\MultiFlexi\Company $company, \MultiFlexi\Application $app, $properties = [])
     {

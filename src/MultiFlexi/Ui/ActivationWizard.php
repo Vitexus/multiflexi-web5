@@ -59,7 +59,7 @@ class ActivationWizard extends \Ease\Html\DivTag
         // Include selectize assets for step 2 (application selection with tag filtering)
         if ($this->currentStep === 2) {
             WebPage::singleton()->includeJavaScript('js/selectize.min.js');
-            WebPage::singleton()->includeCss('css/selectize.bootstrap4.css');
+            WebPage::singleton()->includeCss('css/selectize.bootstrap5.css');
 
             // Add custom CSS for tag highlighting
             WebPage::singleton()->addCSS(<<<'EOD'
@@ -296,15 +296,15 @@ EOD);
         $companies = $company->listingQuery()->orderBy('name')->fetchAll();
 
         if (empty($companies)) {
-            $container->addItem(new \Ease\TWB4\Alert('warning', _('No companies found. Please create a company first.')));
-            $container->addItem(new \Ease\TWB4\LinkButton('companysetup.php', _('Create Company'), 'primary'));
+            $container->addItem(new \Ease\TWB5\Alert('warning', _('No companies found. Please create a company first.')));
+            $container->addItem(new \Ease\TWB5\LinkButton('companysetup.php', _('Create Company'), 'primary'));
 
             return $container;
         }
 
         $form = new SecureForm(['method' => 'POST', 'action' => 'activation-wizard.php?step=2', 'id' => 'wizardForm']);
 
-        $companyCards = new \Ease\TWB4\Row();
+        $companyCards = new \Ease\TWB5\Row();
 
         foreach ($companies as $companyData) {
             $isSelected = ($this->wizardData['company_id'] ?? null) === $companyData['id'];
@@ -371,7 +371,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['company_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('No company selected. Please go back to step 1.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('No company selected. Please go back to step 1.')));
 
             return $container;
         }
@@ -398,7 +398,7 @@ EOD,
             ->fetchAll();
 
         if (empty($applications)) {
-            $container->addItem(new \Ease\TWB4\Alert('warning', _('No applications installed. Please install at least one application first.')));
+            $container->addItem(new \Ease\TWB5\Alert('warning', _('No applications installed. Please install at least one application first.')));
 
             return $container;
         }
@@ -431,14 +431,14 @@ EOD,
             'placeholder' => _('Search by name...'),
             'autocomplete' => 'off',
         ]);
-        $container->addItem(new \Ease\TWB4\FormGroup(_('Search by Name'), $searchInput));
+        $container->addItem(new \Ease\TWB5\FormGroup(_('Search by Name'), $searchInput));
 
         // Add tag filter using PillBox
         if (!empty($allTags)) {
             $container->addItem(new \Ease\Html\H4Tag(_('Filter by Tags')));
             $container->addItem(new \Ease\Html\PTag(_('Select tags to filter applications. All tags are selected by default to show all applications.')));
 
-            $filterRow = new \Ease\TWB4\Row();
+            $filterRow = new \Ease\TWB5\Row();
 
             // Pre-select all tags by default for first-time visitors
             $allTagIds = array_column($allTags, 'id');
@@ -474,7 +474,7 @@ EOD,
         $form = new SecureForm(['method' => 'POST', 'action' => 'activation-wizard.php?step=3', 'id' => 'wizardForm']);
         $form->addItem(new \Ease\Html\InputHiddenTag('company_id', (string) $this->wizardData['company_id']));
 
-        $appCards = new \Ease\TWB4\Row();
+        $appCards = new \Ease\TWB5\Row();
 
         foreach ($applications as $appData) {
             $isSelected = ($this->wizardData['app_id'] ?? null) === $appData['id'];
@@ -518,7 +518,7 @@ EOD,
                 $slugsContainer = new \Ease\Html\DivTag(null, ['class' => 'mb-2']);
 
                 foreach ($appCompanies[$appData['id']] as $slug) {
-                    $slugsContainer->addItem(new \Ease\TWB4\Badge('info', $slug, ['class' => 'mr-1 mb-1']));
+                    $slugsContainer->addItem(new \Ease\TWB5\Badge('info', $slug, ['class' => 'mr-1 mb-1']));
                 }
 
                 $cardBody->addItem($slugsContainer);
@@ -532,7 +532,7 @@ EOD,
                     $tag = trim($tag);
 
                     if (!empty($tag)) {
-                        $badge = new \Ease\TWB4\Badge('secondary', $tag, ['class' => 'mr-1 mb-1 tag-badge']);
+                        $badge = new \Ease\TWB5\Badge('secondary', $tag, ['class' => 'mr-1 mb-1 tag-badge']);
                         $badge->setTagProperty('data-tag', $tag);
                         $tagBadges->addItem($badge);
                     }
@@ -798,7 +798,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['company_id']) || empty($this->wizardData['app_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('Missing company or application. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('Missing company or application. Please complete previous steps.')));
 
             return $container;
         }
@@ -816,7 +816,7 @@ EOD,
         // Default RunTemplate name: "Company / Application"
         $defaultName = $company->getRecordName().' / '.$app->getRecordName();
         $nameInput = new \Ease\Html\InputTextTag('runtemplate_name', $this->wizardData['runtemplate_name'] ?? $defaultName, ['class' => 'form-control', 'required' => 'required', 'placeholder' => _('RunTemplate name')]);
-        $form->addItem(new \Ease\TWB4\FormGroup(_('RunTemplate Name'), $nameInput, '', _('Descriptive name for this configuration')));
+        $form->addItem(new \Ease\TWB5\FormGroup(_('RunTemplate Name'), $nameInput, '', _('Descriptive name for this configuration')));
 
         // Add note field with WYSIWYG editor
         $noteValue = $this->wizardData['runtemplate_note'] ?? '';
@@ -826,10 +826,10 @@ EOD,
             'placeholder' => _('Add notes about this RunTemplate...'),
             'rows' => 6,
         ]);
-        $form->addItem(new \Ease\TWB4\FormGroup(_('Notes'), $noteTextarea, '', _('Optional notes and documentation for this RunTemplate')));
+        $form->addItem(new \Ease\TWB5\FormGroup(_('Notes'), $noteTextarea, '', _('Optional notes and documentation for this RunTemplate')));
 
         $intervalSelect = new IntervalChooser('interv', 'n', ['class' => 'form-control']);
-        $form->addItem(new \Ease\TWB4\FormGroup(_('Schedule Interval'), $intervalSelect, '', _('How often should this run?')));
+        $form->addItem(new \Ease\TWB5\FormGroup(_('Schedule Interval'), $intervalSelect, '', _('How often should this run?')));
 
         $container->addItem($form);
 
@@ -876,7 +876,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['runtemplate_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
 
             return $container;
         }
@@ -898,7 +898,7 @@ EOD,
         $requirements = $app->getRequirements();
 
         if (empty($requirements)) {
-            $container->addItem(new \Ease\TWB4\Alert('info', _('This application does not require any credentials.')));
+            $container->addItem(new \Ease\TWB5\Alert('info', _('This application does not require any credentials.')));
             // Auto-proceed button
             $form = new SecureForm(['method' => 'POST', 'action' => 'activation-wizard.php?step=5', 'id' => 'wizardForm']);
             $form->addItem(new \Ease\Html\InputHiddenTag('runtemplate_id', (string) $this->wizardData['runtemplate_id']));
@@ -922,8 +922,8 @@ EOD,
                 ->fetch();
 
             if (!$credType) {
-                $alert = new \Ease\TWB4\Alert('warning', sprintf(_('Credential type %s not found.'), $requirement));
-                $alert->addItem(new \Ease\TWB4\LinkButton('credentialtype.php?prototype='.$requirement, _('Create Credential Type'), 'primary btn-sm'));
+                $alert = new \Ease\TWB5\Alert('warning', sprintf(_('Credential type %s not found.'), $requirement));
+                $alert->addItem(new \Ease\TWB5\LinkButton('credentialtype.php?prototype='.$requirement, _('Create Credential Type'), 'primary btn-sm'));
                 $form->addItem($alert);
 
                 continue;
@@ -936,8 +936,8 @@ EOD,
                 ->fetchAll();
 
             if (empty($companyCredentials)) {
-                $alert = new \Ease\TWB4\Alert('warning', sprintf(_('No credentials found for %s.'), $requirement));
-                $alert->addItem(new \Ease\TWB4\LinkButton('credential.php?company_id='.$company->getMyKey().'&credential_type_id='.$credType['id'], _('Create Credential'), 'primary btn-sm'));
+                $alert = new \Ease\TWB5\Alert('warning', sprintf(_('No credentials found for %s.'), $requirement));
+                $alert->addItem(new \Ease\TWB5\LinkButton('credential.php?company_id='.$company->getMyKey().'&credential_type_id='.$credType['id'], _('Create Credential'), 'primary btn-sm'));
                 $form->addItem($alert);
 
                 continue;
@@ -952,7 +952,7 @@ EOD,
                 $select->addItem(new \Ease\Html\OptionTag($cred['name'], (string) $cred['id']));
             }
 
-            $formGroup = new \Ease\TWB4\FormGroup(
+            $formGroup = new \Ease\TWB5\FormGroup(
                 sprintf(_('Credential for %s'), $requirement),
                 $select,
                 '',
@@ -974,7 +974,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['runtemplate_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
 
             return $container;
         }
@@ -1002,7 +1002,7 @@ EOD,
         $appConfigs->addFields($customized);
 
         if (empty($appConfigs->getFields())) {
-            $container->addItem(new \Ease\TWB4\Alert('info', _('This application does not require any configuration.')));
+            $container->addItem(new \Ease\TWB5\Alert('info', _('This application does not require any configuration.')));
         } else {
             foreach ($appConfigs as $fieldName => $field) {
                 $runTemplateField = $runTemplateFields->getFieldByCode($fieldName);
@@ -1023,19 +1023,19 @@ EOD,
 
                             $input = $this->createConfigInput($field, $fieldName, $runTemplateField->getValue());
                             $input->setTagProperty('disabled', '1');
-                            $form->addItem(new \Ease\TWB4\FormGroup($inputCaption, $input, $field->getDescription(), ''));
+                            $form->addItem(new \Ease\TWB5\FormGroup($inputCaption, $input, $field->getDescription(), ''));
                         } else {
                             $input = $this->createConfigInput($field, $fieldName);
-                            $form->addItem(new \Ease\TWB4\FormGroup($fieldName, $input, $field->getDescription(), ''));
+                            $form->addItem(new \Ease\TWB5\FormGroup($fieldName, $input, $field->getDescription(), ''));
                         }
                     } else {
                         $input = $this->createConfigInput($field, $fieldName);
-                        $form->addItem(new \Ease\TWB4\FormGroup($fieldName, $input, $field->getDescription(), ''));
+                        $form->addItem(new \Ease\TWB5\FormGroup($fieldName, $input, $field->getDescription(), ''));
                     }
                 } else {
                     // Simple field without credential
                     $input = $this->createConfigInput($field, $fieldName);
-                    $form->addItem(new \Ease\TWB4\FormGroup($fieldName, $input, $field->getDescription(), ''));
+                    $form->addItem(new \Ease\TWB5\FormGroup($fieldName, $input, $field->getDescription(), ''));
                 }
             }
         }
@@ -1091,7 +1091,7 @@ EOD,
 
         // Previous button
         if ($this->currentStep > 1) {
-            $prevButton = new \Ease\TWB4\LinkButton('activation-wizard.php?step='.($this->currentStep - 1), _('Previous'), 'secondary');
+            $prevButton = new \Ease\TWB5\LinkButton('activation-wizard.php?step='.($this->currentStep - 1), _('Previous'), 'secondary');
             $nav->addItem($prevButton);
         } else {
             $nav->addItem(new \Ease\Html\DivTag()); // Empty div for spacing
@@ -1099,10 +1099,10 @@ EOD,
 
         // Middle section - Create Company button for step 1, Create Application button for step 2
         if ($this->currentStep === 1) {
-            $createCompanyButton = new \Ease\TWB4\LinkButton('companysetup.php', '➕ '._('Create Company'), 'info');
+            $createCompanyButton = new \Ease\TWB5\LinkButton('companysetup.php', '➕ '._('Create Company'), 'info');
             $nav->addItem($createCompanyButton);
         } elseif ($this->currentStep === 2) {
-            $createApplicationButton = new \Ease\TWB4\LinkButton('app.php', '🧩 '._('Create Application'), 'info');
+            $createApplicationButton = new \Ease\TWB5\LinkButton('app.php', '🧩 '._('Create Application'), 'info');
             $nav->addItem($createApplicationButton);
         } else {
             $nav->addItem(new \Ease\Html\DivTag()); // Empty div for spacing
@@ -1132,7 +1132,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['runtemplate_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
 
             return $container;
         }
@@ -1237,10 +1237,10 @@ EOD,
         $container->addItem(new \Ease\Html\HrTag());
 
         // Action buttons
-        $buttonRow = new \Ease\TWB4\Row();
+        $buttonRow = new \Ease\TWB5\Row();
         $buttonRow->addColumn(
             3,
-            new \Ease\TWB4\LinkButton(
+            new \Ease\TWB5\LinkButton(
                 'runtemplate.php?id='.$runtemplateId,
                 '⚗️ '._('View RunTemplate'),
                 'primary btn-lg btn-block',
@@ -1248,7 +1248,7 @@ EOD,
         );
         $buttonRow->addColumn(
             3,
-            new \Ease\TWB4\LinkButton(
+            new \Ease\TWB5\LinkButton(
                 'schedule.php?id='.$runtemplateId,
                 '📅 '._('Schedule'),
                 'info btn-lg btn-block',
@@ -1256,7 +1256,7 @@ EOD,
         );
         $buttonRow->addColumn(
             3,
-            new \Ease\TWB4\LinkButton(
+            new \Ease\TWB5\LinkButton(
                 'runtemplates.php',
                 '📋 '._('All RunTemplates'),
                 'secondary btn-lg btn-block',
@@ -1264,7 +1264,7 @@ EOD,
         );
         $buttonRow->addColumn(
             3,
-            new \Ease\TWB4\LinkButton(
+            new \Ease\TWB5\LinkButton(
                 'activation-wizard.php?reset=1',
                 '🌟 '._('New Activation'),
                 'success btn-lg btn-block',
@@ -1284,7 +1284,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['runtemplate_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('RunTemplate not created. Please complete previous steps.')));
 
             return $container;
         }
@@ -1326,7 +1326,7 @@ EOD,
         $successActions = $runTemplate->getDataValue('success') ? unserialize($runTemplate->getDataValue('success')) : [];
 
         // Create tabs for success and fail actions
-        $actionsRow = new \Ease\TWB4\Tabs();
+        $actionsRow = new \Ease\TWB5\Tabs();
         $actionsRow->addTab(_('Success Actions'), new ActionsChooser('success', $runTemplate, $successActions), !empty($successActions));
         $actionsRow->addTab(_('Fail Actions'), new ActionsChooser('fail', $runTemplate, $failActions), !empty($failActions));
 

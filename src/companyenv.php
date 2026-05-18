@@ -18,11 +18,11 @@ namespace MultiFlexi\Ui;
 require_once './init.php';
 WebPage::singleton()->onlyForLogged();
 $result = false;
-$action = \Ease\TWB4\WebPage::getRequestValue('action');
+$action = \Ease\TWB5\WebPage::getRequestValue('action');
 
 if ($action === 'delete') {
     // Delete environment variable by keyword for current company
-    $keyword = \Ease\TWB4\WebPage::getRequestValue('keyword');
+    $keyword = \Ease\TWB5\WebPage::getRequestValue('keyword');
     $companyId = $_SESSION['company'] ?? null;
 
     if (!empty($keyword) && null !== $companyId) {
@@ -43,9 +43,9 @@ if ($action === 'delete') {
 } else {
     // Update environment variable (inline edit)
     // bootstrap-editable sends: pk=<keyword>, name=<field>, value=<new value>
-    $pk = \Ease\TWB4\WebPage::getRequestValue('pk');       // keyword string (not numeric ID)
-    $name = \Ease\TWB4\WebPage::getRequestValue('name');   // 'keyword' or 'value'
-    $value = \Ease\TWB4\WebPage::getRequestValue('value'); // new value
+    $pk = \Ease\TWB5\WebPage::getRequestValue('pk');       // keyword string (not numeric ID)
+    $name = \Ease\TWB5\WebPage::getRequestValue('name');   // 'keyword' or 'value'
+    $value = \Ease\TWB5\WebPage::getRequestValue('value'); // new value
     $companyId = $_SESSION['company'] ?? null;
 
     if (null !== $pk && null !== $companyId) {

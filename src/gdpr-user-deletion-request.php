@@ -124,7 +124,7 @@ WebPage::singleton()->addItem(new PageTop(_('GDPR User Deletion Request')));
 $container = WebPage::singleton()->container;
 
 // Add breadcrumb navigation
-$breadcrumb = new \Ease\TWB4\Breadcrumb();
+$breadcrumb = new \Ease\TWB5\Breadcrumb();
 $breadcrumb->addItem(new \Ease\Html\ATag('users.php', _('Users')));
 $breadcrumb->addItem(new \Ease\Html\ATag('user.php?id='.$targetUser->getId(), $targetUser->getUserName()));
 $breadcrumb->addItem(_('Delete Account'));
@@ -151,7 +151,7 @@ $existingRequest = $pendingRequests->listingQuery()
     ->fetch();
 
 if ($existingRequest) {
-    $alert = new \Ease\TWB4\Alert(
+    $alert = new \Ease\TWB5\Alert(
         _('Existing Deletion Request'),
         'info',
         sprintf(

@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class LaunchButton extends \Ease\TWB4\LinkButton
+class LaunchButton extends \Ease\TWB5\LinkButton
 {
     /**
      * @param int                   $appCompanyID

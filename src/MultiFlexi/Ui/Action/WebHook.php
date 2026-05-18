@@ -36,6 +36,6 @@ class WebHook extends \MultiFlexi\Action\WebHook
      */
     public function inputs(string $prefix): \Ease\Embedable
     {
-        return new \Ease\TWB4\FormGroup(_('Uri'), new \Ease\Html\InputTextTag($prefix.'[WebHook][uri]'), '', _('Report endpoint'));
+        return new \Ease\TWB5\FormGroup(_('Uri'), new \Ease\Html\InputTextTag($prefix.'[WebHook][uri]'), '', _('Report endpoint'));
     }
 }

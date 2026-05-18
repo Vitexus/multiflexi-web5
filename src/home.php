@@ -27,30 +27,30 @@ WebPage::singleton()->addItem(new PageTop(_('Home')));
 $container = WebPage::singleton()->container;
 
 // Welcome section
-$welcomeCard = new \Ease\TWB4\Card();
+$welcomeCard = new \Ease\TWB5\Card();
 $welcomeCard->addItem(new \Ease\Html\H2Tag(_('Welcome back').' '.$currentUser->getUserName()));
 $welcomeCard->addItem(new \Ease\Html\PTag(_('This is your personal dashboard with overview of your recent activities.')));
 
 // Quick actions
-$actionRow = new \Ease\TWB4\Row();
+$actionRow = new \Ease\TWB5\Row();
 $actionRow->addColumn(3, [
-    new \Ease\TWB4\LinkButton('profile.php', new \Ease\TWB4\Widgets\FaIcon('user').' '._('Edit Profile'), 'primary btn-block', ['title' => _('Edit your profile information'), 'id' => 'editProfileButton']),
+    new \Ease\TWB5\LinkButton('profile.php', new \Ease\TWB5\Widgets\FaIcon('user').' '._('Edit Profile'), 'primary btn-block', ['title' => _('Edit your profile information'), 'id' => 'editProfileButton']),
 ]);
 $actionRow->addColumn(3, [
-    new \Ease\TWB4\LinkButton('data-export-page.php', new \Ease\TWB4\Widgets\FaIcon('download').' '._('Export My Data'), 'info btn-block', ['title' => _('Export your personal data'), 'id' => 'exportDataButton']),
+    new \Ease\TWB5\LinkButton('data-export-page.php', new \Ease\TWB5\Widgets\FaIcon('download').' '._('Export My Data'), 'info btn-block', ['title' => _('Export your personal data'), 'id' => 'exportDataButton']),
 ]);
 $actionRow->addColumn(3, [
-    new \Ease\TWB4\LinkButton('consent-preferences.php', new \Ease\TWB4\Widgets\FaIcon('user-shield').' '._('Privacy Settings'), 'secondary btn-block', ['title' => _('Manage your privacy settings'), 'id' => 'privacySettingsButton']),
+    new \Ease\TWB5\LinkButton('consent-preferences.php', new \Ease\TWB5\Widgets\FaIcon('user-shield').' '._('Privacy Settings'), 'secondary btn-block', ['title' => _('Manage your privacy settings'), 'id' => 'privacySettingsButton']),
 ]);
 $actionRow->addColumn(3, [
-    new \Ease\TWB4\LinkButton('joblist.php', new \Ease\TWB4\Widgets\FaIcon('list').' '._('All Jobs'), 'success btn-block', ['title' => _('View all jobs in the system'), 'id' => 'allJobsButton']),
+    new \Ease\TWB5\LinkButton('joblist.php', new \Ease\TWB5\Widgets\FaIcon('list').' '._('All Jobs'), 'success btn-block', ['title' => _('View all jobs in the system'), 'id' => 'allJobsButton']),
 ]);
 
 $welcomeCard->addItem($actionRow);
 $container->addItem($welcomeCard);
 
 // User statistics
-$statsRow = new \Ease\TWB4\Row();
+$statsRow = new \Ease\TWB5\Row();
 
 // Note: job table uses 'launched_by' text field, not user_id
 // We'll show all jobs since we can't filter by current user
@@ -75,22 +75,22 @@ $totalLogsCount = $logEngine->getFluentPDO()->from('log')
     ->count();
 
 // Display statistics cards (showing system-wide stats)
-$totalJobsCard = new \Ease\TWB4\Card();
+$totalJobsCard = new \Ease\TWB5\Card();
 $totalJobsCard->addItem(new \Ease\Html\H3Tag($totalJobsCount, ['class' => 'text-center']));
 $totalJobsCard->addItem(new \Ease\Html\PTag(_('Total Jobs in System'), ['class' => 'text-center text-muted']));
 $statsRow->addColumn(3, $totalJobsCard);
 
-$successJobsCard = new \Ease\TWB4\Card();
+$successJobsCard = new \Ease\TWB5\Card();
 $successJobsCard->addItem(new \Ease\Html\H3Tag($successfulJobsCount, ['class' => 'text-center text-success']));
 $successJobsCard->addItem(new \Ease\Html\PTag(_('Successful Jobs'), ['class' => 'text-center text-muted']));
 $statsRow->addColumn(3, $successJobsCard);
 
-$failedJobsCard = new \Ease\TWB4\Card();
+$failedJobsCard = new \Ease\TWB5\Card();
 $failedJobsCard->addItem(new \Ease\Html\H3Tag($failedJobsCount, ['class' => 'text-center text-danger']));
 $failedJobsCard->addItem(new \Ease\Html\PTag(_('Failed Jobs'), ['class' => 'text-center text-muted']));
 $statsRow->addColumn(3, $failedJobsCard);
 
-$logsCard = new \Ease\TWB4\Card();
+$logsCard = new \Ease\TWB5\Card();
 $logsCard->addItem(new \Ease\Html\H3Tag($totalLogsCount, ['class' => 'text-center']));
 $logsCard->addItem(new \Ease\Html\PTag(_('Log Entries'), ['class' => 'text-center text-muted']));
 $statsRow->addColumn(3, $logsCard);
@@ -98,7 +98,7 @@ $statsRow->addColumn(3, $logsCard);
 $container->addItem($statsRow);
 
 // Recent jobs section
-$recentJobsCard = new \Ease\TWB4\Card(_('Recent Jobs'));
+$recentJobsCard = new \Ease\TWB5\Card(_('Recent Jobs'));
 
 // Note: job table uses 'launched_by' text field, showing all recent jobs
 $recentJobs = $jobEngine->getFluentPDO()->from('job j')
@@ -129,13 +129,13 @@ if (!empty($recentJobs)) {
         $statusBadge = '';
 
         if ($job['exitcode'] === null && $job['begin'] !== null) {
-            $statusBadge = new \Ease\TWB4\Badge('🏃 '._('Running'), 'primary');
+            $statusBadge = new \Ease\TWB5\Badge('🏃 '._('Running'), 'primary');
         } elseif ($job['exitcode'] === 0 || $job['exitcode'] === '0') {
-            $statusBadge = new \Ease\TWB4\Badge('✅ '._('Success'), 'success');
+            $statusBadge = new \Ease\TWB5\Badge('✅ '._('Success'), 'success');
         } elseif ($job['exitcode'] !== null) {
-            $statusBadge = new \Ease\TWB4\Badge('❌ '._('Failed'), 'danger');
+            $statusBadge = new \Ease\TWB5\Badge('❌ '._('Failed'), 'danger');
         } else {
-            $statusBadge = new \Ease\TWB4\Badge('⏳ '._('Pending'), 'warning');
+            $statusBadge = new \Ease\TWB5\Badge('⏳ '._('Pending'), 'warning');
         }
 
         $jobsTable->addRowColumns([
@@ -150,13 +150,13 @@ if (!empty($recentJobs)) {
 
     $recentJobsCard->addItem($jobsTable);
 } else {
-    $recentJobsCard->addItem(new \Ease\TWB4\Alert(_('No jobs found'), 'info'));
+    $recentJobsCard->addItem(new \Ease\TWB5\Alert(_('No jobs found'), 'info'));
 }
 
 $container->addItem($recentJobsCard);
 
 // Recent logs section
-$recentLogsCard = new \Ease\TWB4\Card(_('My Recent Activity Log'));
+$recentLogsCard = new \Ease\TWB5\Card(_('My Recent Activity Log'));
 
 // Create custom logger instance filtered by user_id
 $userLogEngine = new \MultiFlexi\Logger();
@@ -169,7 +169,7 @@ $recentLogsCard->addItem(new DBDataTable($userLogEngine, ['buttons' => false]));
 $container->addItem($recentLogsCard);
 
 // Account information section
-$accountCard = new \Ease\TWB4\Card(_('Account Information'));
+$accountCard = new \Ease\TWB5\Card(_('Account Information'));
 
 $accountInfo = new \Ease\Html\DlTag(null, ['class' => 'row']);
 
@@ -187,7 +187,7 @@ $accountInfo->addItem(new \Ease\Html\DdTag(
 
 $accountCard->addItem($accountInfo);
 $accountCard->addItem(new \Ease\Html\DivTag(
-    new \Ease\TWB4\LinkButton('profile.php', new \Ease\TWB4\Widgets\FaIcon('edit').' '._('Edit Profile'), 'primary'),
+    new \Ease\TWB5\LinkButton('profile.php', new \Ease\TWB5\Widgets\FaIcon('edit').' '._('Edit Profile'), 'primary'),
     ['class' => 'text-right mt-3'],
 ));
 

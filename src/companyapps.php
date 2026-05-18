@@ -22,9 +22,9 @@ use Ease\Html\InputHiddenTag;
 use Ease\Html\LabelTag;
 use Ease\Html\PTag;
 use Ease\Html\SmallTag;
-use Ease\TWB4\Card;
-use Ease\TWB4\Row;
-use Ease\TWB4\SubmitButton;
+use Ease\TWB5\Card;
+use Ease\TWB5\Row;
+use Ease\TWB5\SubmitButton;
 
 require_once './init.php';
 
@@ -92,7 +92,7 @@ $filterContainer->addItem(new H2Tag(sprintf(_('Choose Applications for %s'), $co
 // Include Selectize assets for tag filtering
 if (!empty($allTags)) {
     WebPage::singleton()->includeJavaScript('js/selectize.min.js');
-    WebPage::singleton()->includeCss('css/selectize.bootstrap4.css');
+    WebPage::singleton()->includeCss('css/selectize.bootstrap5.css');
 }
 
 // Add tag filter using PillBox if tags are available
@@ -189,7 +189,7 @@ foreach ($allApps as $app) {
             $tag = trim($tag);
 
             if (!empty($tag)) {
-                $badge = new \Ease\TWB4\Badge('secondary', $tag, ['class' => 'mr-1 mb-1 tag-badge']);
+                $badge = new \Ease\TWB5\Badge('secondary', $tag, ['class' => 'mr-1 mb-1 tag-badge']);
                 $tagBadges->addItem($badge);
             }
         }

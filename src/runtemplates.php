@@ -21,9 +21,9 @@ WebPage::singleton()->onlyForLogged();
 
 WebPage::singleton()->addItem(new PageTop(_('Runtemplates')));
 
-$buttonRow = new \Ease\TWB4\Row();
+$buttonRow = new \Ease\TWB5\Row();
 $buttonRow->addColumn(12, [
-    new \Ease\TWB4\LinkButton('activation-wizard.php', '🧙 '._('Activation Wizard'), 'success btn-lg'),
+    new \Ease\TWB5\LinkButton('activation-wizard.php', '🧙 '._('Activation Wizard'), 'success btn-lg'),
     '&nbsp;',
     new \Ease\Html\SmallTag(_('Use the wizard to easily activate an application in a company')),
 ]);

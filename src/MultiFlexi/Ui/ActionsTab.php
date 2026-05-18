@@ -21,7 +21,7 @@ use MultiFlexi\RunTemplate;
 /**
  * @no-named-arguments
  */
-class ActionsTab extends \Ease\TWB4\Form
+class ActionsTab extends \Ease\TWB5\Form
 {
     public function __construct(RunTemplate $runTemplater)
     {
@@ -31,7 +31,7 @@ class ActionsTab extends \Ease\TWB4\Form
         $failActions = $runTemplater->getDataValue('fail') ? unserialize($runTemplater->getDataValue('fail')) : [];
         $succesActions = $runTemplater->getDataValue('success') ? unserialize($runTemplater->getDataValue('success')) : [];
 
-        $actionsRow = new \Ease\TWB4\Tabs();
+        $actionsRow = new \Ease\TWB5\Tabs();
         $actionsRow->addTab(_('Success Actions'), new ActionsChooser('success', $app, $succesActions), (bool) $periodcalTaskInfo['success']);
         $actionsRow->addTab(_('Fail Actions'), new ActionsChooser('fail', $app, $failActions), (bool) $periodcalTaskInfo['fail']);
 
@@ -40,7 +40,7 @@ class ActionsTab extends \Ease\TWB4\Form
         $this->addItem(new \Ease\Html\InputHiddenTag('company_id', $periodcalTaskInfo['company_id']));
         $this->addItem(new \Ease\Html\InputHiddenTag('interval', $periodcalTaskInfo['interv']));
         $this->addItem($actionsRow);
-        $this->addItem(new \Ease\TWB4\SubmitButton('🍏 '._('Apply'), 'primary btn-lg btn-block'));
+        $this->addItem(new \Ease\TWB5\SubmitButton('🍏 '._('Apply'), 'primary btn-lg btn-block'));
 
         $actionsData = [];
         $configRows = $actions->getRuntemplateConfig($runTemplater->getMyKey());

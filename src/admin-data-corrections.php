@@ -63,8 +63,8 @@ $container = WebPage::singleton()->container;
 $auditLogger = new \MultiFlexi\Audit\UserDataAuditLogger();
 $stats = $auditLogger->getAuditStatistics(date('Y-m-d', strtotime('-30 days')), date('Y-m-d'));
 
-$statsCard = new \Ease\TWB4\Card(_('Last 30 Days Statistics'));
-$statsRow = new \Ease\TWB4\Row();
+$statsCard = new \Ease\TWB5\Card(_('Last 30 Days Statistics'));
+$statsRow = new \Ease\TWB5\Row();
 
 $statsRow->addColumn(3, [
     new \Ease\Html\H4Tag($stats['total_changes'], ['class' => 'text-primary']),
@@ -93,10 +93,10 @@ $container->addItem($statsCard);
 $pendingRequests = $correctionRequest->getPendingRequests(20);
 
 if (!empty($pendingRequests)) {
-    $pendingCard = new \Ease\TWB4\Card(_('Pending Data Correction Requests'));
+    $pendingCard = new \Ease\TWB5\Card(_('Pending Data Correction Requests'));
 
     foreach ($pendingRequests as $request) {
-        $requestPanel = new \Ease\TWB4\Card(
+        $requestPanel = new \Ease\TWB5\Card(
             sprintf(_('Request #%d - %s'), $request['id'], $request['login']),
             'light',
         );
@@ -118,7 +118,7 @@ if (!empty($pendingRequests)) {
         $reviewForm = new \MultiFlexi\Ui\SecureForm(['method' => 'POST']);
         $reviewForm->addItem(new \Ease\Html\InputHiddenTag('request_id', $request['id']));
 
-        $reviewForm->addItem(new \Ease\TWB4\FormGroup([
+        $reviewForm->addItem(new \Ease\TWB5\FormGroup([
             new \Ease\Html\LabelTag('reviewer_notes', _('Admin Notes')),
             new \Ease\Html\TextareaTag('reviewer_notes', '', [
                 'class' => 'form-control',
@@ -127,13 +127,13 @@ if (!empty($pendingRequests)) {
             ]),
         ]));
 
-        $buttonGroup = new \Ease\TWB4\ButtonGroup();
-        $buttonGroup->addItem(new \Ease\TWB4\SubmitButton(_('Approve'), 'success', [
+        $buttonGroup = new \Ease\TWB5\ButtonGroup();
+        $buttonGroup->addItem(new \Ease\TWB5\SubmitButton(_('Approve'), 'success', [
             'name' => 'action',
             'value' => 'approve',
             'onclick' => 'return confirm("'._('Are you sure you want to approve this request?').'")',
         ]));
-        $buttonGroup->addItem(new \Ease\TWB4\SubmitButton(_('Reject'), 'danger', [
+        $buttonGroup->addItem(new \Ease\TWB5\SubmitButton(_('Reject'), 'danger', [
             'name' => 'action',
             'value' => 'reject',
             'onclick' => 'return confirm("'._('Are you sure you want to reject this request?').'")',
@@ -148,7 +148,7 @@ if (!empty($pendingRequests)) {
 
     $container->addItem($pendingCard);
 } else {
-    $container->addItem(new \Ease\TWB4\Alert(
+    $container->addItem(new \Ease\TWB5\Alert(
         _('No pending data correction requests.'),
         'info',
     ));
@@ -172,7 +172,7 @@ $recentActivity = $correctionRequest->listingQuery()
     ->fetchAll();
 
 if (!empty($recentActivity)) {
-    $activityCard = new \Ease\TWB4\Card(_('Recent Activity'));
+    $activityCard = new \Ease\TWB5\Card(_('Recent Activity'));
 
     $activityTable = new \Ease\Html\TableTag(null, ['class' => 'table table-striped']);
     $activityTable->addRowHeaderColumns([
@@ -187,8 +187,8 @@ if (!empty($recentActivity)) {
 
     foreach ($recentActivity as $activity) {
         $statusBadge = $activity['status'] === 'approved' ?
-            new \Ease\TWB4\Badge(_('Approved'), 'success') :
-            new \Ease\TWB4\Badge(_('Rejected'), 'danger');
+            new \Ease\TWB5\Badge(_('Approved'), 'success') :
+            new \Ease\TWB5\Badge(_('Rejected'), 'danger');
 
         $fieldDisplayName = \MultiFlexi\GDPR\UserDataCorrectionRequest::getFieldDisplayName($activity['field_name']);
 

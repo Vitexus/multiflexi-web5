@@ -18,9 +18,9 @@ namespace MultiFlexi\Ui;
 use Ease\Html\InputHiddenTag;
 use Ease\Html\InputTag;
 use Ease\Html\TextareaTag;
-use Ease\TWB4\Alert;
-use Ease\TWB4\Badge;
-use Ease\TWB4\SubmitButton;
+use Ease\TWB5\Alert;
+use Ease\TWB5\Badge;
+use Ease\TWB5\SubmitButton;
 use MultiFlexi\Audit\UserDataAuditLogger;
 use MultiFlexi\GDPR\UserDataCorrectionRequest;
 use MultiFlexi\User;
@@ -323,7 +323,7 @@ class UserDataCorrectionForm extends SecureForm
         $pendingRequests = $this->correctionRequest->getUserRequests($this->user->getId(), 5);
 
         if (!empty($pendingRequests)) {
-            $pendingPanel = new \Ease\TWB4\Card(_('Your Data Change Requests'));
+            $pendingPanel = new \Ease\TWB5\Card(_('Your Data Change Requests'));
 
             foreach ($pendingRequests as $request) {
                 $statusBadge = self::getStatusBadge($request['status']);

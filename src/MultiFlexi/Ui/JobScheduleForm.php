@@ -67,7 +67,7 @@ CSS);
 
         $this->timeSelect();
         $this->reqiredFields();
-        $this->addItem(new \Ease\TWB4\SubmitButton('<img src="images/schedule.svg" height="30">&nbsp;'._('Save App Schedule'), 'success btn-lg'));
+        $this->addItem(new \Ease\TWB5\SubmitButton('<img src="images/schedule.svg" height="30">&nbsp;'._('Save App Schedule'), 'success btn-lg'));
 
         parent::finalize();
     }
@@ -97,7 +97,7 @@ CSS);
                         break;
                     case 'bool':
                         $formGroup = $this->addInput(
-                            new \Ease\Html\DivTag(new \Ease\TWB4\Widgets\Toggle($code, false, 'true', ['data-size' => 'small'])),
+                            new \Ease\Html\DivTag(new \Ease\TWB5\Widgets\Toggle($code, false, 'true', ['data-size' => 'small'])),
                             $field->getDescription(),
                         );
                         self::addFieldFlags($formGroup, $field);
@@ -137,21 +137,21 @@ CSS);
 
         if ($field->isRequired()) {
             $formGroup->addTagClass('required-field');
-            $flags->addItem(new \Ease\TWB4\Badge('danger', _('required')));
+            $flags->addItem(new \Ease\TWB5\Badge('danger', _('required')));
         }
 
         if ($field->isSecret()) {
             $formGroup->addTagClass('secret-field');
-            $flags->addItem(new \Ease\TWB4\Badge('dark', '🔒 '._('secret')));
+            $flags->addItem(new \Ease\TWB5\Badge('dark', '🔒 '._('secret')));
         }
 
         if ($field->isExpiring()) {
             $formGroup->addTagClass('expiring-field');
-            $flags->addItem(new \Ease\TWB4\Badge('warning', '⏳ '._('expiring')));
+            $flags->addItem(new \Ease\TWB5\Badge('warning', '⏳ '._('expiring')));
         }
 
         if ($field->isMultiLine()) {
-            $flags->addItem(new \Ease\TWB4\Badge('info', _('multiline')));
+            $flags->addItem(new \Ease\TWB5\Badge('info', _('multiline')));
         }
 
         if (!empty($flags->pageParts)) {

@@ -76,9 +76,9 @@ class DBDataTable extends \Ease\Html\TableTag
         //        $this->includeJavaScript('js/datatablerenderutils.js');
 
         $this->includeJavaScript('js/jquery.dataTables.js');
-        $this->includeJavaScript('js/dataTables.bootstrap4.js');
-        $this->includeCss('css/dataTables.bootstrap4.css');
-        // $this->includeCss('css/buttons.bootstrap4.css');
+        $this->includeJavaScript('js/dataTables.bootstrap5.js');
+        $this->includeCss('css/dataTables.bootstrap5.css');
+        // $this->includeCss('css/buttons.bootstrap5.css');
 
         //        $this->includeJavaScript('assets/DataTables-1.10.19/js/jquery.dataTables.min.js');
         //        $this->includeJavaScript('assets/DataTables-1.10.19/js/dataTables.bootstrap.min.js');
@@ -93,11 +93,11 @@ class DBDataTable extends \Ease\Html\TableTag
         //        $this->includeJavaScript('assets/Responsive-2.2.2/js/responsive.bootstrap.min.js');
         $this->includeJavaScript('js/selectize.min.js');
         $this->includeCss('css/selectize.css');
-        $this->includeCss('css/selectize.bootstrap4.css');
+        $this->includeCss('css/selectize.bootstrap5.css');
         $this->setTagClass('table table-bordered');
         $this->includeJavaScript('assets/Buttons-1.5.6/js/dataTables.buttons.js');
-        $this->includeJavaScript('assets/Buttons-1.5.6/js/buttons.bootstrap4.min.js');
-        $this->includeCss('assets/Buttons-1.5.6/css/buttons.bootstrap4.min.css');
+        $this->includeJavaScript('assets/Buttons-1.5.6/js/buttons.bootstrap5.min.js');
+        $this->includeCss('assets/Buttons-1.5.6/css/buttons.bootstrap5.min.css');
         //
         //        $this->includeJavaScript('assets/JSZip-2.5.0/jszip.min.js');
         //        $this->includeJavaScript('assets/pdfmake-0.1.36/pdfmake.min.js');

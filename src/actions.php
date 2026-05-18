@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace MultiFlexi\Ui;
 
-use Ease\TWB4\WebPage;
+use Ease\TWB5\WebPage;
 use MultiFlexi\Application;
 use MultiFlexi\RunTemplate;
 
@@ -52,7 +52,7 @@ $appPanel = new ApplicationPanel($app, $interval);
 
 $appPanel->headRow->addItem(new RuntemplateButton($runTemplater));
 
-$actionsRow = new \Ease\TWB4\Tabs();
+$actionsRow = new \Ease\TWB5\Tabs();
 $actionsRow->addTab(_('Success Actions'), new ActionsChooser('success', $runTemplater, $succesActions), (bool) $periodcalTaskInfo['success']);
 $actionsRow->addTab(_('Fail Actions'), new ActionsChooser('fail', $runTemplater, $failActions), (bool) $periodcalTaskInfo['fail']);
 
@@ -62,7 +62,7 @@ $jobtempform->addItem(new \Ease\Html\InputHiddenTag('app', $periodcalTaskInfo['a
 $jobtempform->addItem(new \Ease\Html\InputHiddenTag('company_id', $periodcalTaskInfo['company_id']));
 $jobtempform->addItem(new \Ease\Html\InputHiddenTag('interval', $periodcalTaskInfo['interv']));
 $jobtempform->addItem($appPanel);
-$jobtempform->addItem(new \Ease\TWB4\SubmitButton('🍏 '._('Apply'), 'primary btn-lg btn-block', ['title' => _('Apply changes'), 'id' => 'actionsbutton']));
+$jobtempform->addItem(new \Ease\TWB5\SubmitButton('🍏 '._('Apply'), 'primary btn-lg btn-block', ['title' => _('Apply changes'), 'id' => 'actionsbutton']));
 
 WebPage::singleton()->container->addItem(new CompanyPanel(new \MultiFlexi\Company($periodcalTaskInfo['company_id']), $jobtempform));
 

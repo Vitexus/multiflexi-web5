@@ -19,11 +19,11 @@ require_once './init.php';
 
 WebPage::singleton()->addItem(new PageTop(_('About')));
 
-$infoBlock = WebPage::singleton()->container->addItem(new \Ease\TWB4\Panel(
+$infoBlock = WebPage::singleton()->container->addItem(new \Ease\TWB5\Panel(
     _('About Program'),
     'default',
     null,
-    new \Ease\TWB4\LinkButton(
+    new \Ease\TWB5\LinkButton(
         'http://vitexsoftware.com/',
         _('Vitex Software'),
         'info',

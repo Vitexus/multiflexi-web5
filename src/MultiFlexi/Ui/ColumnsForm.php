@@ -18,10 +18,10 @@ namespace MultiFlexi\Ui;
 use Ease\Html\DivTag;
 use Ease\Html\InputHiddenTag;
 use Ease\Html\InputSubmitTag;
-use Ease\TWB4\Col;
-use Ease\TWB4\FormGroup;
-use Ease\TWB4\Row;
-use Ease\TWB4\SubmitButton;
+use Ease\TWB5\Col;
+use Ease\TWB5\FormGroup;
+use Ease\TWB5\Row;
+use Ease\TWB5\SubmitButton;
 use MultiFlexi\Engine;
 
 /**

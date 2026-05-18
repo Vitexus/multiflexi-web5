@@ -21,7 +21,7 @@ namespace MultiFlexi\Ui;
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  * @copyright 2023-2024 Vitex Software
  */
-class DashboardStatusCards extends \Ease\TWB4\Row
+class DashboardStatusCards extends \Ease\TWB5\Row
 {
     /**
      * Constructor.
@@ -43,7 +43,7 @@ class DashboardStatusCards extends \Ease\TWB4\Row
 
         // Úspěšné joby
         $successRate = $totalJobs > 0 ? round(($successJobs / $totalJobs) * 100) : 0;
-        $card5 = new \Ease\TWB4\Card(null, ['class' => 'bg-success text-white']);
+        $card5 = new \Ease\TWB5\Card(null, ['class' => 'bg-success text-white']);
         $card5Body = new \Ease\Html\DivTag(null, ['class' => 'card-body text-center']);
         $card5Body->addItem(new \Ease\Html\H5Tag(_('Successful Jobs'), ['class' => 'card-title']));
         $card5Body->addItem(new \Ease\Html\H2Tag($successJobs, ['class' => 'display-4']));
@@ -54,7 +54,7 @@ class DashboardStatusCards extends \Ease\TWB4\Row
 
         // Neúspěšné joby
         $failureRate = $totalJobs > 0 ? round(($failedJobs / $totalJobs) * 100) : 0;
-        $card6 = new \Ease\TWB4\Card(null, ['class' => 'bg-danger text-white']);
+        $card6 = new \Ease\TWB5\Card(null, ['class' => 'bg-danger text-white']);
         $card6Body = new \Ease\Html\DivTag(null, ['class' => 'card-body text-center']);
         $card6Body->addItem(new \Ease\Html\H5Tag(_('Failed Jobs'), ['class' => 'card-title']));
         $card6Body->addItem(new \Ease\Html\H2Tag($failedJobs, ['class' => 'display-4']));
@@ -64,7 +64,7 @@ class DashboardStatusCards extends \Ease\TWB4\Row
         $this->addColumn(3, $card6);
 
         // Běžící joby
-        $card7 = new \Ease\TWB4\Card(null, ['class' => 'bg-primary text-white']);
+        $card7 = new \Ease\TWB5\Card(null, ['class' => 'bg-primary text-white']);
         $card7Body = new \Ease\Html\DivTag(null, ['class' => 'card-body text-center']);
         $card7Body->addItem(new \Ease\Html\H5Tag(_('Running Jobs'), ['class' => 'card-title']));
         $card7Body->addItem(new \Ease\Html\H2Tag($runningJobs, ['class' => 'display-4']));
@@ -74,7 +74,7 @@ class DashboardStatusCards extends \Ease\TWB4\Row
         $this->addColumn(3, $card7);
 
         // Dnešní joby
-        $card8 = new \Ease\TWB4\Card(null, ['class' => 'bg-info text-white']);
+        $card8 = new \Ease\TWB5\Card(null, ['class' => 'bg-info text-white']);
         $card8Body = new \Ease\Html\DivTag(null, ['class' => 'card-body text-center']);
         $card8Body->addItem(new \Ease\Html\H5Tag(_('Today\'s Jobs'), ['class' => 'card-title']));
         $card8Body->addItem(new \Ease\Html\H2Tag($todayJobs, ['class' => 'display-4']));

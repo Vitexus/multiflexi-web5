@@ -17,9 +17,9 @@ namespace MultiFlexi\Ui;
 
 use Ease\Html\ATag;
 use Ease\Html\H3Tag;
-use Ease\TWB4\LinkButton;
-use Ease\TWB4\Row;
-use Ease\TWB4\Table;
+use Ease\TWB5\LinkButton;
+use Ease\TWB5\Row;
+use Ease\TWB5\Table;
 use MultiFlexi\Application;
 use MultiFlexi\Company;
 use MultiFlexi\Job;

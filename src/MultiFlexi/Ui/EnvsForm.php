@@ -35,6 +35,6 @@ class EnvsForm extends SecureForm
         $this->addItem(new \Ease\Html\HrTag());
         $this->addInput(new \Ease\Html\InputTextTag('env[newkey]', ''), _('New Configuration Key'));
         $this->addInput(new \Ease\Html\InputTextTag('env[newvalue]', ''), _('New Configuration value'));
-        $this->addItem(new \Ease\TWB4\SubmitButton(_('Save / Add'), 'success'));
+        $this->addItem(new \Ease\TWB5\SubmitButton(_('Save / Add'), 'success'));
     }
 }

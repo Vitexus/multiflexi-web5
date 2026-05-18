@@ -260,7 +260,7 @@ if (($step === 'complete' || $step === 'finish') && !isset($runtemplateId)) {
         $step = 'complete'; // Set to complete to show summary
     } else {
         // No wizard data in session - redirect to start or show message
-        $noDataMessage = new \Ease\TWB4\Alert(
+        $noDataMessage = new \Ease\TWB5\Alert(
             'warning',
             '⚠️ '._('No activation wizard data found. Please start a new activation.').'<br>'.
             '<a href="activation-wizard.php?reset=1" class="btn btn-primary mt-2">'._('Start New Activation').'</a>',
@@ -278,7 +278,7 @@ if ($step === 'complete' && isset($runtemplateId)) {
     $app = new \MultiFlexi\Application($runTemplate->getDataValue('app_id'));
     $company = new \MultiFlexi\Company($runTemplate->getDataValue('company_id'));
 
-    $completionCard = new \Ease\TWB4\Card('🎉 '._('Activation Complete'));
+    $completionCard = new \Ease\TWB5\Card('🎉 '._('Activation Complete'));
 
     $completionCard->addTagClass('text-white bg-success');
 
@@ -370,10 +370,10 @@ if ($step === 'complete' && isset($runtemplateId)) {
     $completionCard->addItem(new \Ease\Html\HrTag());
     $completionCard->addItem(new \Ease\Html\PTag('🚀 '._('Your RunTemplate has been successfully created and configured!')));
 
-    $buttonRow = new \Ease\TWB4\Row();
+    $buttonRow = new \Ease\TWB5\Row();
     $buttonRow->addColumn(
         4,
-        new \Ease\TWB4\LinkButton(
+        new \Ease\TWB5\LinkButton(
             'runtemplate.php?id='.$runtemplateId,
             '⚗️ '._('View RunTemplate'),
             'primary btn-lg btn-block',
@@ -381,7 +381,7 @@ if ($step === 'complete' && isset($runtemplateId)) {
     );
     $buttonRow->addColumn(
         4,
-        new \Ease\TWB4\LinkButton(
+        new \Ease\TWB5\LinkButton(
             'runtemplates.php',
             '📋 '._('All RunTemplates'),
             'secondary btn-lg btn-block',
@@ -389,7 +389,7 @@ if ($step === 'complete' && isset($runtemplateId)) {
     );
     $buttonRow->addColumn(
         4,
-        new \Ease\TWB4\LinkButton(
+        new \Ease\TWB5\LinkButton(
             'activation-wizard.php?reset=1',
             '🌟 '._('New Activation'),
             'success btn-lg btn-block',

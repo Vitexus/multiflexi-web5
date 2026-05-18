@@ -209,15 +209,15 @@ class CredentialWizard extends \Ease\Html\DivTag
         $companies = $company->listingQuery()->orderBy('name')->fetchAll();
 
         if (empty($companies)) {
-            $container->addItem(new \Ease\TWB4\Alert('warning', _('No companies found. Please create a company first.')));
-            $container->addItem(new \Ease\TWB4\LinkButton('companysetup.php', _('Create Company'), 'primary'));
+            $container->addItem(new \Ease\TWB5\Alert('warning', _('No companies found. Please create a company first.')));
+            $container->addItem(new \Ease\TWB5\LinkButton('companysetup.php', _('Create Company'), 'primary'));
 
             return $container;
         }
 
         $form = new SecureForm(['method' => 'POST', 'action' => 'credential-wizard.php?step=2', 'id' => 'wizardForm']);
 
-        $companyCards = new \Ease\TWB4\Row();
+        $companyCards = new \Ease\TWB5\Row();
 
         foreach ($companies as $companyData) {
             $isSelected = ($this->wizardData['company_id'] ?? null) === $companyData['id'];
@@ -282,7 +282,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['company_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('No company selected. Please go back to step 1.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('No company selected. Please go back to step 1.')));
 
             return $container;
         }
@@ -295,8 +295,8 @@ EOD,
         $prototypes = $prototype->listingQuery()->orderBy('name')->fetchAll();
 
         if (empty($prototypes)) {
-            $container->addItem(new \Ease\TWB4\Alert('warning', _('No credential prototypes found.')));
-            $container->addItem(new \Ease\TWB4\LinkButton('credentialprototype.php', _('Create Credential Prototype'), 'primary', ['title' => _('Create new credential prototype'), 'id' => 'createprototypewizardbutton']));
+            $container->addItem(new \Ease\TWB5\Alert('warning', _('No credential prototypes found.')));
+            $container->addItem(new \Ease\TWB5\LinkButton('credentialprototype.php', _('Create Credential Prototype'), 'primary', ['title' => _('Create new credential prototype'), 'id' => 'createprototypewizardbutton']));
 
             return $container;
         }
@@ -304,7 +304,7 @@ EOD,
         $form = new SecureForm(['method' => 'POST', 'action' => 'credential-wizard.php?step=3', 'id' => 'wizardForm']);
         $form->addItem(new \Ease\Html\InputHiddenTag('company_id', (string) $this->wizardData['company_id']));
 
-        $prototypeCards = new \Ease\TWB4\Row();
+        $prototypeCards = new \Ease\TWB5\Row();
 
         foreach ($prototypes as $prototypeData) {
             $isSelected = ($this->wizardData['credential_prototype_id'] ?? null) === $prototypeData['id'];
@@ -371,7 +371,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['company_id']) || empty($this->wizardData['credential_prototype_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('Missing company or prototype. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('Missing company or prototype. Please complete previous steps.')));
 
             return $container;
         }
@@ -395,7 +395,7 @@ EOD,
 
         if (!empty($existingTypes)) {
             $container->addItem(new \Ease\Html\H4Tag(_('Existing Credential Types')));
-            $typeCards = new \Ease\TWB4\Row();
+            $typeCards = new \Ease\TWB5\Row();
 
             foreach ($existingTypes as $typeData) {
                 $isSelected = ($this->wizardData['credential_type_id'] ?? null) === $typeData['id'];
@@ -429,11 +429,11 @@ EOD,
         // Option to create new credential type
         $container->addItem(new \Ease\Html\H4Tag(_('Or Create New Credential Type')));
 
-        $newTypeCard = new \Ease\TWB4\Card(_('Create New Type'));
+        $newTypeCard = new \Ease\TWB5\Card(_('Create New Type'));
         $newTypeCard->addTagClass('border-info');
 
         $newTypeNameInput = new \Ease\Html\InputTextTag('new_credential_type_name', '', ['class' => 'form-control', 'placeholder' => _('New credential type name')]);
-        $newTypeCard->addItem(new \Ease\TWB4\FormGroup(_('Type Name'), $newTypeNameInput));
+        $newTypeCard->addItem(new \Ease\TWB5\FormGroup(_('Type Name'), $newTypeNameInput));
 
         $createNewRadio = new \Ease\Html\InputTag('credential_type_choice', 'new', ['type' => 'radio', 'name' => 'credential_type_choice', 'id' => 'create_new_radio']);
         $newTypeCard->addItem(new \Ease\Html\DivTag([$createNewRadio, ' ', _('Create new credential type')], ['class' => 'form-check']));
@@ -473,7 +473,7 @@ EOD,
         $container = new \Ease\Html\DivTag();
 
         if (empty($this->wizardData['company_id']) || empty($this->wizardData['credential_prototype_id']) || empty($this->wizardData['credential_type_id'])) {
-            $container->addItem(new \Ease\TWB4\Alert('danger', _('Missing required data. Please complete previous steps.')));
+            $container->addItem(new \Ease\TWB5\Alert('danger', _('Missing required data. Please complete previous steps.')));
 
             return $container;
         }
@@ -490,7 +490,7 @@ EOD,
 
         // Credential name
         $nameInput = new \Ease\Html\InputTextTag('name', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => _('Credential name')]);
-        $form->addItem(new \Ease\TWB4\FormGroup(_('Credential Name'), $nameInput));
+        $form->addItem(new \Ease\TWB5\FormGroup(_('Credential Name'), $nameInput));
 
         // Get fields from credential type
         $fieldsSource = $credentialType->getFields();
@@ -516,7 +516,7 @@ EOD,
                     break;
             }
 
-            $form->addItem(new \Ease\TWB4\FormGroup($field->getName() ?: $fieldName, $input, '', $field->getDescription()));
+            $form->addItem(new \Ease\TWB5\FormGroup($field->getName() ?: $fieldName, $input, '', $field->getDescription()));
         }
 
         $container->addItem($form);
@@ -533,7 +533,7 @@ EOD,
 
         // Previous button
         if ($this->currentStep > 1) {
-            $prevButton = new \Ease\TWB4\LinkButton('credential-wizard.php?step='.($this->currentStep - 1), _('Previous'), 'secondary', ['title' => _('Go to previous step'), 'id' => 'prevwizardcredentialbutton']);
+            $prevButton = new \Ease\TWB5\LinkButton('credential-wizard.php?step='.($this->currentStep - 1), _('Previous'), 'secondary', ['title' => _('Go to previous step'), 'id' => 'prevwizardcredentialbutton']);
             $nav->addItem($prevButton);
         } else {
             $nav->addItem(new \Ease\Html\DivTag()); // Empty div for spacing
@@ -541,10 +541,10 @@ EOD,
 
         // Middle section - Create Company button for step 1
         if ($this->currentStep === 1) {
-            $createCompanyButton = new \Ease\TWB4\LinkButton('companysetup.php', '➕ '._('Create Company'), 'info');
+            $createCompanyButton = new \Ease\TWB5\LinkButton('companysetup.php', '➕ '._('Create Company'), 'info');
             $nav->addItem($createCompanyButton);
         } elseif ($this->currentStep === 2) {
-            $createPrototypeButton = new \Ease\TWB4\LinkButton('credentialprototype.php', '🔐 '._('Create Prototype'), 'info', ['title' => _('Create new credential prototype'), 'id' => 'createprototypewizardbutton']);
+            $createPrototypeButton = new \Ease\TWB5\LinkButton('credentialprototype.php', '🔐 '._('Create Prototype'), 'info', ['title' => _('Create new credential prototype'), 'id' => 'createprototypewizardbutton']);
             $nav->addItem($createPrototypeButton);
         } else {
             $nav->addItem(new \Ease\Html\DivTag()); // Empty div for spacing

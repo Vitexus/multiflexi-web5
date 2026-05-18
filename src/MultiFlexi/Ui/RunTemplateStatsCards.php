@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @author vitex
  */
-class RunTemplateStatsCards extends \Ease\TWB4\Row
+class RunTemplateStatsCards extends \Ease\TWB5\Row
 {
     private \MultiFlexi\RunTemplate $runtemplate;
     private array $stats;
@@ -40,7 +40,7 @@ class RunTemplateStatsCards extends \Ease\TWB4\Row
         parent::__construct();
 
         // Create a single row to container everything
-        $mainRow = new \Ease\TWB4\Row();
+        $mainRow = new \Ease\TWB5\Row();
 
         // 1) Statistics Cards - Left Column (1/12) - Extremely Vertical compact
         $cardsCol = $mainRow->addColumn(1, new \Ease\Html\DivTag(null, ['class' => 'd-flex flex-column', 'style' => 'gap: 2px;']));
@@ -121,7 +121,7 @@ class RunTemplateStatsCards extends \Ease\TWB4\Row
         $execCol->addItem($execChips);
 
         // Visualization Row: Job Graph Widget
-        $vizRow = new \Ease\TWB4\Row();
+        $vizRow = new \Ease\TWB5\Row();
         $vizRow->addTagClass('mt-3');
         $jobGraphWidget = new \Ease\Html\DivTag([
             new \Ease\Html\H5Tag(_('Recent Jobs Visualization'), ['class' => 'mb-2 font-weight-bold text-muted text-uppercase small']),
@@ -130,7 +130,7 @@ class RunTemplateStatsCards extends \Ease\TWB4\Row
         $vizRow->addItem($jobGraphWidget);
 
         // Chart Row: Full-width Job Chart
-        $chartRow = new \Ease\TWB4\Row();
+        $chartRow = new \Ease\TWB5\Row();
         $chartRow->addTagClass('mt-2');
         $chartCol = $chartRow->addColumn(12, new \MultiFlexi\Ui\RunTemplateJobsLastMonthChart($this->runtemplate, ['style' => 'width: 100%;']));
 
@@ -273,9 +273,9 @@ class RunTemplateStatsCards extends \Ease\TWB4\Row
      * @param string $label   Card label
      * @param string $context Bootstrap context (primary, success, danger, etc.)
      */
-    private static function createCompactStatCard(string $icon, string $value, string $label, string $context): \Ease\TWB4\Card
+    private static function createCompactStatCard(string $icon, string $value, string $label, string $context): \Ease\TWB5\Card
     {
-        $card = new \Ease\TWB4\Card();
+        $card = new \Ease\TWB5\Card();
         $card->addTagClass('border-'.$context);
         $card->addTagClass('shadow-sm');
 

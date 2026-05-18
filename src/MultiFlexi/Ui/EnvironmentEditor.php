@@ -115,7 +115,7 @@ class EnvironmentEditor extends \Ease\Html\TableTag
         // Submit button
         $btnCol = new \Ease\Html\DivTag(null, ['class' => 'col-sm-3']);
         $btnCol->addItem(new \Ease\Html\SpanTag('&nbsp;', ['class' => 'form-label small d-block mb-1']));
-        $btnCol->addItem(new \Ease\TWB4\SubmitButton(
+        $btnCol->addItem(new \Ease\TWB5\SubmitButton(
             '<i class="fas fa-plus-circle me-1"></i>'._('Add Field'),
             'success',
             ['title' => _('Add new environment field'), 'id' => 'addnewenvfieldbutton', 'class' => 'btn-block w-100'],

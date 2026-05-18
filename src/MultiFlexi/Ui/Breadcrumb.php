@@ -22,7 +22,7 @@ namespace MultiFlexi\Ui;
  *
  * @no-named-arguments
  */
-class Breadcrumb extends \Ease\TWB4\Breadcrumb
+class Breadcrumb extends \Ease\TWB5\Breadcrumb
 {
     /**
      * App Breadcrumb.

@@ -33,7 +33,7 @@ class DashboardWidgetsTest extends TestCase
 
         // This would require database setup
         // $widget = new \MultiFlexi\Ui\DashboardMetricsCards();
-        // $this->assertInstanceOf(\Ease\TWB4\Row::class, $widget);
+        // $this->assertInstanceOf(\Ease\TWB5\Row::class, $widget);
     }
 
     /**
@@ -45,7 +45,7 @@ class DashboardWidgetsTest extends TestCase
 
         // This would require database setup
         // $widget = new \MultiFlexi\Ui\DashboardStatusCards();
-        // $this->assertInstanceOf(\Ease\TWB4\Row::class, $widget);
+        // $this->assertInstanceOf(\Ease\TWB5\Row::class, $widget);
     }
 
     /**
